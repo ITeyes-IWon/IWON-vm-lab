@@ -1,0 +1,16 @@
+﻿{
+  "resources": {
+    "repositories": {
+      "self": {
+        "refName": "refs/heads/master"
+      }
+    }
+  },
+  "templateParameters": {
+    "deployTarget": "was",
+    "artifactFeedName": "iwon-smart-feed",
+    "mavenPackageDefinition": "com.iteyes.smart:smart-was",
+    "mavenPackageVersion": "1.0.0-was.ed4f9",
+    "artifactPattern": "*.jar"
+  }
+}

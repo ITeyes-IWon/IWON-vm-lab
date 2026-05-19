@@ -303,6 +303,23 @@ ARM 값 확보 절차/명령은 IaC 실행 단계인 1.1.1에서 수행한다.
 - 권한(Authorize resources) 완료
 - Feed 목록과 패키지 목록 조회 가능
 
+### 2.5.1 Key Vault 키값 매핑 확인 (임시 디버깅)
+
+Key Vault/Variable Group 시크릿이 파이프라인에 정상 매핑되는지 빠르게 확인하려면, 값 자체를 출력하지 말고 "변수 존재 여부"만 확인한다.
+
+파이프라인 YAML에 아래 스크립트를 임시로 추가하면 로드 여부를 검증할 수 있다.
+
+```yaml
+- script: |
+    echo "KEY_NAME is set: ${{ ne(variables['IWON-API-KEY'], '') }}"
+  displayName: 'Check variable mapping'
+```
+
+설명:
+1. 로그에는 실제 시크릿 값이 노출되지 않는다.
+2. `true`면 변수 매핑 성공, `false`면 변수명/Variable Group 연결/Key Vault 링크를 재확인한다.
+3. 점검 완료 후에는 해당 디버깅 스크립트를 제거한다.
+
 ### 2.6 현재 상태 스냅샷 (2026-04-03 기준)
 
 | 항목 | 현재 상태 | 구분 | 메모 |
@@ -333,7 +350,21 @@ ARM 값 확보 절차/명령은 IaC 실행 단계인 1.1.1에서 수행한다.
 | `Package not found in feed` | GitHub 사전 설정/CI 미완료 | source repo `build.gradle`, Actions, Feed package 목록 | 패키지가 아직 publish 안 됨 |
 | run 이 `pending` 에서 멈춤 | ADO Agent 문제 | Agent Pool > `Default` > `JASONK` | self-hosted agent offline |
 | `No commit found for SHA` | 실행 파라미터 문제 | Run pipeline 입력값 / REST payload | 잘못된 ref 또는 SHA 전달 |
+| `Unable to resolve the reference 'refs/heads/main' to a specific version` / `PipelineValidationException (HTTP 400)` | GitHub Service Connection PAT 만료/무효 | ADO Portal > Project Settings > Service connections > `iwon-github-sc`, GitHub PAT 만료일 | GitHub 연결 토큰이 만료되면 ADO가 대상 브랜치를 실제 커밋으로 해석하지 못해 ref resolve 오류가 발생함 |
 | `IWON-vm-lab`에 `build.gradle` 없음 | 정상 구조 | 저장소 역할 구분 | 이 저장소는 gitops/CD 저장소임 |
+
+PAT 만료 증빙 캡처: [gitops/github-pat-token-expired.png](gitops/github-pat-token-expired.png)
+
+* GitHub PAT을 준비하는 방법:
+
+> GitHub → Settings → Developer settings → Personal access tokens → Generate new token
+필요한 권한: repo, admin:repo_hook (파이프라인 트리거용)
+
+해결 절차(재발급/재인증/재실행):
+1. GitHub에서 만료된 PAT를 폐기(revoke)하고 신규 PAT를 재발급한다.
+2. Azure DevOps `iwon-github-sc` Service Connection에 신규 PAT로 재인증(Update)한다.
+3. 연결된 Pipeline(`iwon-vm-cd`)의 저장소 연결 상태를 저장/검증한다.
+4. GitHub Actions를 재실행하여 Runs API 호출과 ADO 파이프라인 실행 여부를 확인한다.
 
 ### 2.8 다음 판단 순서 (현재 기준)
 
@@ -617,7 +648,7 @@ jobs:
             -X POST \
             --data @run-pipeline.json \
             "${API_URL}")
-          echo "ADO Pipeline Run ID: $(echo "${RESPONSE}" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("id","unknown"))')"
+          echo "ADO Pipeline Run ID: $(python3 -c 'import json; print(json.load(open("response.json")).get("id","unknown"))')"
 ```
 
 #### 6.2.4 `.github/workflows/deploy-was.yml` 생성
@@ -697,7 +728,7 @@ jobs:
             -X POST \
             --data @run-pipeline.json \
             "${API_URL}")
-          echo "ADO Pipeline Run ID: $(echo "${RESPONSE}" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("id","unknown"))')"
+          echo "ADO Pipeline Run ID: $(python3 -c 'import json; print(json.load(open("response.json")).get("id","unknown"))')"
 ```
 
 ---
@@ -795,7 +826,7 @@ jobs:
             -X POST \
             --data @run-pipeline.json \
             "${API_URL}")
-          echo "ADO Pipeline Run ID: $(echo "${RESPONSE}" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("id","unknown"))')"
+          echo "ADO Pipeline Run ID: $(python3 -c 'import json; print(json.load(open("response.json")).get("id","unknown"))')"
 ```
 
 ---
@@ -893,7 +924,7 @@ jobs:
             -X POST \
             --data @run-pipeline.json \
             "${API_URL}")
-          echo "ADO Pipeline Run ID: $(echo "${RESPONSE}" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("id","unknown"))')"
+          echo "ADO Pipeline Run ID: $(python3 -c 'import json; print(json.load(open("response.json")).get("id","unknown"))')"
 ```
 
 ---
