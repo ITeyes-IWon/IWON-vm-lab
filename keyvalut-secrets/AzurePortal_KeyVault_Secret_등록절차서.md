@@ -19,29 +19,29 @@
 
 | Key Vault 이름 | Key 값  | Description |
 | :--- | :--- | :--- |
-| **IWON_WALLET_AES_KEY_BASE64** | `YBZKoOzR6eRW/2ZBfcBxmiN5bDhzXptxHnue69U20+0=` | [cite_start]지갑 주소 암호화 키 [cite: 1] |
-| **IWON_API_KEY_HEADER** | `X-IWON-API-KEY` | [cite_start]API Key 헤더 명칭 [cite: 1] |
-| **IWON_CHAIN_ID** | `11155111` | [cite_start]Sepolia 네트워크 ID [cite: 1] |
-| **IWON_RPC_URL** | `wss://eth-sepolia.g.alchemy.com/v2/OEZ8vjlRi-Qf4KcdiLIDo` | [cite_start]RPC 접속 URL [cite: 1] |
-| **IWON_TOKEN_ADDRESS** | `0xf6f411F7B59591b22D22a0681E0f8CE6C746220c` | [cite_start]토큰 컨트랙트 주소 [cite: 1] |
-| **IWON_TOKEN_DECIMALS** | `18` | [cite_start]토큰 소수점 자리수 [cite: 1] |
-| **IWON_ADMIN_PRIVATE_KEY** | `0x244fb223130ef3ac6d53be4f87dff9daff23dcdca18a024387ee8b26e8361c0c` | [cite_start]관리자 개인키 (보안 주의) [cite: 1] |
-| **IWON_COMPANY_PRIVATE_KEY** | `0x7653b6146e102004cd8813a06341a7c507e1386be5c93fa00a39f90e6d17aab9` | [cite_start]운영용 개인키 (보안 주의) [cite: 1] |
-| **SPRING_DATASOURCE_URL** | `jdbc:mariadb://10.0.2.50:3306/appdb?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8` | [cite_start]통합: 메인 및 Maria120 DB URL [cite: 1] |
-| **SPRING_DATASOURCE_USERNAME** | `appuser` | [cite_start]통합: DB 접속 공용 계정 [cite: 1] |
-| **SPRING_DATASOURCE_PASSWORD** | `appuserpassword123!` | [cite_start]통합: DB 접속 공용 암호 [cite: 1] |
-| **IWON_WALLET_API_BASE_URL** | `http://10.0.2.40:8080` | [cite_start]통합: Wallet/Token API 공용 주소 [cite: 1] |
-| **TOKEN_API_BASE_PATH** | `/api/token` | [cite_start]토큰 API 기본 경로 [cite: 1] |
-| **IWON_KAFKA_BOOTSTRAP_SERVERS** | `10.0.2.60:9092` | [cite_start]Kafka 브로커 주소 [cite: 1] |
-| **IWON_COMPANY_WALLET_USER_ID** | `ITEyes` | [cite_start]통합: 법인 지갑/Treasury 사용자 ID [cite: 1] |
-| **SERVER_SERVLET_CONTEXT_PATH** | `/app` | [cite_start]애플리케이션 컨텍스트 경로 [cite: 1] |
-| **SPRING_SESSION_TIMEOUT** | `30m` | [cite_start]세션 만료 시간 [cite: 1] |
-| **LOGGING_FILE_NAME** | `logs/app.log` | [cite_start]로그 파일 저장 경로 [cite: 1] |
-| **LOG_MAX_FILE_SIZE** | `50MB` | [cite_start]로그 개별 파일 최대 크기 [cite: 1] |
-| **LOG_TOTAL_SIZE_CAP** | `2GB` | [cite_start]전체 로그 용량 제한 [cite: 1] |
-| **LOG_MAX_HISTORY** | `14` | [cite_start]로그 보관 기간 (일 단위) [cite: 1] |
-| **IWON_P6SPY_LOG_LEVEL** | `INFO` | [cite_start]SQL 쿼리 로깅 레벨 [cite: 1] |
-| **IWON_API_AUTH_ENABLED** | `FALSE` | [cite_start]API 인증 활성화 여부 [cite: 1] |
+| **IWON-WALLET-AES-KEY-BASE64** | `YBZKoOzR6eRW/2ZBfcBxmiN5bDhzXptxHnue69U20+0=` | [cite_start]지갑 주소 암호화 키 [cite: 1] |
+| **IWON-API-KEY-HEADER** | `X-IWON-API-KEY` | [cite-start]API Key 헤더 명칭 [cite: 1] |
+| **IWON-CHAIN-ID** | `11155111` | [cite-start]Sepolia 네트워크 ID [cite: 1] |
+| **IWON-RPC-URL** | `wss://eth-sepolia.g.alchemy.com/v2/OEZ8vjlRi-Qf4KcdiLIDo` | [cite-start]RPC 접속 URL [cite: 1] |
+| **IWON-TOKEN-ADDRESS** | `0xf6f411F7B59591b22D22a0681E0f8CE6C746220c` | [cite-start]토큰 컨트랙트 주소 [cite: 1] |
+| **IWON-TOKEN-DECIMALS** | `18` | [cite-start]토큰 소수점 자리수 [cite: 1] |
+| **IWON-ADMIN-PRIVATE-KEY** | `0x244fb223130ef3ac6d53be4f87dff9daff23dcdca18a024387ee8b26e8361c0c` | [cite-start]관리자 개인키 (보안 주의) [cite: 1] |
+| **IWON-COMPANY-PRIVATE-KEY** | `0x7653b6146e102004cd8813a06341a7c507e1386be5c93fa00a39f90e6d17aab9` | [cite-start]운영용 개인키 (보안 주의) [cite: 1] |
+| **SPRING-DATASOURCE-URL** | `jdbc:mariadb://10.0.2.50:3306/appdb?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8` | [cite-start]통합: 메인 및 Maria120 DB URL [cite: 1] |
+| **SPRING-DATASOURCE-USERNAME** | `appuser` | [cite-start]통합: DB 접속 공용 계정 [cite: 1] |
+| **SPRING-DATASOURCE-PASSWORD** | `appuserpassword123!` | [cite-start]통합: DB 접속 공용 암호 [cite: 1] |
+| **IWON-WALLET-API-BASE-URL** | `http://10.0.2.40:8080` | [cite-start]통합: Wallet/Token API 공용 주소 [cite: 1] |
+| **TOKEN-API-BASE-PATH** | `/api/token` | [cite-start]토큰 API 기본 경로 [cite: 1] |
+| **IWON-KAFKA-BOOTSTRAP-SERVERS** | `10.0.2.60:9092` | [cite-start]Kafka 브로커 주소 [cite: 1] |
+| **IWON-COMPANY-WALLET-USER-ID** | `ITEyes` | [cite-start]통합: 법인 지갑/Treasury 사용자 ID [cite: 1] |
+| **SERVER-SERVLET-CONTEXT-PATH** | `/app` | [cite-start]애플리케이션 컨텍스트 경로 [cite: 1] |
+| **SPRING-SESSION-TIMEOUT** | `30m` | [cite-start]세션 만료 시간 [cite: 1] |
+| **LOGGING-FILE-NAME** | `logs/app.log` | [cite-start]로그 파일 저장 경로 [cite: 1] |
+| **LOG-MAX-FILE-SIZE** | `50MB` | [cite-start]로그 개별 파일 최대 크기 [cite: 1] |
+| **LOG-TOTAL-SIZE-CAP** | `2GB` | [cite-start]전체 로그 용량 제한 [cite: 1] |
+| **LOG-MAX-HISTORY** | `14` | [cite-start]로그 보관 기간 (일 단위) [cite: 1] |
+| **IWON-P6SPY-LOG-LEVEL** | `INFO` | [cite-start]SQL 쿼리 로깅 레벨 [cite: 1] |
+| **IWON-API-AUTH-ENABLED** | `FALSE` | [cite-start]API 인증 활성화 여부 [cite: 1] |
 
 ---
 사전 작업: Secret 등록 전에 [Azure_KeyVault_RBAC_역할_할당절차.md](Azure_KeyVault_RBAC_역할_할당절차.md)를 참조하여 RBAC 역할 할당을 먼저 완료한다.
@@ -225,10 +225,7 @@ az role assignment list --assignee-object-id <SP_OBJECT_ID> --scope $kvId --quer
 2. 형식 오류 시 기대 형식 명시 (길이, 인코딩)
 3. 외부 접근 오류는 상태코드+리소스명 포함
 
-실무 팁:
-1. 지금처럼 `runTerraform=false`로 자주 배포한다면, 같은 체크 스텝을 Deploy stage에도 넣어야 항상 로그에서 확인 가능합니다.
-2. 원하면 azure-pipelines-vm.yml에 Deploy stage용 체크 스텝까지 바로 추가해드릴게요.
----
+
 
 ## 7. 보안 운영 원칙
 1. 저장소에 실제 AES 키 커밋 금지
