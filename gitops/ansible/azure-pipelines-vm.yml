@@ -194,7 +194,6 @@ stages:
                     }
 
                     echo "[Key mapping check - macro variables]"
-                    check_set "IWON-API-KEY" "${KV_IWON_API_KEY:-}"
                     check_set "IWON-WALLET-AES-KEY-BASE64" "${KV_IWON_WALLET_AES_KEY_BASE64:-}"
                     check_set "IWON-API-KEY-HEADER" "${KV_IWON_API_KEY_HEADER:-}"
                     check_set "IWON-CHAIN-ID" "${KV_IWON_CHAIN_ID:-}"
@@ -240,7 +239,6 @@ stages:
                     fi
                   displayName: Check variable mappings (temporary)
                   env:
-                    KV_IWON_API_KEY: $(IWON-API-KEY)
                     KV_IWON_WALLET_AES_KEY_BASE64: $(IWON-WALLET-AES-KEY-BASE64)
                     KV_IWON_API_KEY_HEADER: $(IWON-API-KEY-HEADER)
                     KV_IWON_CHAIN_ID: $(IWON-CHAIN-ID)
@@ -338,7 +336,6 @@ stages:
                     }
 
                     echo "[Key mapping check - macro variables / Deploy stage]"
-                    check_set "IWON-API-KEY" "${KV_IWON_API_KEY:-}"
                     check_set "IWON-WALLET-AES-KEY-BASE64" "${KV_IWON_WALLET_AES_KEY_BASE64:-}"
                     check_set "IWON-API-KEY-HEADER" "${KV_IWON_API_KEY_HEADER:-}"
                     check_set "IWON-CHAIN-ID" "${KV_IWON_CHAIN_ID:-}"
@@ -384,7 +381,6 @@ stages:
                     fi
                   displayName: Check variable mappings (temporary, Deploy)
                   env:
-                    KV_IWON_API_KEY: $(IWON-API-KEY)
                     KV_IWON_WALLET_AES_KEY_BASE64: $(IWON-WALLET-AES-KEY-BASE64)
                     KV_IWON_API_KEY_HEADER: $(IWON-API-KEY-HEADER)
                     KV_IWON_CHAIN_ID: $(IWON-CHAIN-ID)
