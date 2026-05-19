@@ -19,3 +19,4 @@
       SPRING_DATASOURCE_URL: "{{ spring_datasource_url }}"
       SPRING_DATASOURCE_USERNAME: "{{ spring_datasource_username }}"
       SPRING_DATASOURCE_PASSWORD: "{{ spring_datasource_password }}"
+      IWON_API_KEY_HEADER: "{{ iwon_api_key_header }}"
