@@ -8,6 +8,7 @@ trigger:
       - vm-azure/*
       - vm-ansible/*
 
+
 pr:
   branches:
     include:
