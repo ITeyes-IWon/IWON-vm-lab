@@ -194,7 +194,40 @@ az role assignment list --assignee-object-id <SP_OBJECT_ID> --scope $kvId --quer
    - Key Vault Secret 값 갱신
    - 재배포
    - 기능 재검증
+좋은 포인트입니다. 지금 상황에서 키볼트 값 미적용을 검증하려면, 아래 순서로 보면 가장 빨리 원인 좁혀집니다.
 
+**1) 파이프라인에서 “값 존재 여부” 먼저 확인**
+1. ADO 실행 로그에서 azure-pipelines-vm.yml의 `Check variable mappings (temporary)` 스텝 결과 확인
+2. `... is set: true/false`로 변수 로드 여부만 확인 (값 출력 금지)
+3. 주의: 현재 이 체크 스텝은 Terraform stage에 있어서 `runTerraform=true`일 때만 실행됩니다
+
+**2) Variable Group ↔ Key Vault 매핑 확인**
+1. ADO > Pipelines > Library > `IWON-KV-SECRETS` 열기
+2. Key Vault linkage 상태 확인 (연결된 Vault가 `iwonsvckvkrc001`인지)
+3. 필요한 secret이 Variable Group에 포함/선택되어 있는지 확인
+4. 파이프라인 권한(Authorize for use) 확인
+
+**3) Key Vault 자체 상태 확인**
+1. secret이 존재하는지 (`enabled=true`, 만료/비활성 아님)
+2. 최근 갱신 후 버전이 바뀌었다면 Variable Group 재동기화(Refresh) 후 재실행
+3. 서비스 연결 SPN 권한은 이미 확인된 상태이므로, 다음으로는 secret 이름 불일치 가능성을 우선 점검
+
+**4) 배포 후 앱 레벨 검증 (암복호화)**
+1. 기동 직후 health는 `UP`인데 기능만 실패하면 키 주입/포맷 문제 가능성 큼
+2. 실제 암복호화 API 1건 호출해서 성공/실패 확인
+3. 실패 시 앱 로그에서 원인 분리:
+- 키 누락: placeholder 미해결/필수 env 누락 메시지
+- 키 형식 오류: `InvalidKeyException`, base64/길이 오류
+- 권한/호출 오류: Key Vault 접근 실패(403/401)
+
+**5) “원인 식별 가능한 예외 메시지” 기준**
+1. 키 누락 시 변수명 포함 메시지로 남기기 (예: `Missing required secret: IWON_API_KEY`)
+2. 형식 오류 시 기대 형식 명시 (길이, 인코딩)
+3. 외부 접근 오류는 상태코드+리소스명 포함
+
+실무 팁:
+1. 지금처럼 `runTerraform=false`로 자주 배포한다면, 같은 체크 스텝을 Deploy stage에도 넣어야 항상 로그에서 확인 가능합니다.
+2. 원하면 azure-pipelines-vm.yml에 Deploy stage용 체크 스텝까지 바로 추가해드릴게요.
 ---
 
 ## 7. 보안 운영 원칙

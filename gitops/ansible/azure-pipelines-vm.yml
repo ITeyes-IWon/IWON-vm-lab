@@ -261,6 +261,33 @@ stages:
               steps:
                 - checkout: self
 
+                - bash: |
+                    set -euo pipefail
+
+                    echo "[Key mapping check - macro variables / Deploy stage]"
+                    echo "IWON-API-KEY is set: ${{ ne(variables['IWON-API-KEY'], '') }}"
+                    echo "ADO_AGENT_PAT is set: ${{ ne(variables['ADO_AGENT_PAT'], '') }}"
+                    echo "TFSTATE_RG is set: ${{ ne(variables['TFSTATE_RG'], '') }}"
+                    echo "TFSTATE_STORAGE is set: ${{ ne(variables['TFSTATE_STORAGE'], '') }}"
+                    echo "ANSIBLE_SSH_PRIVATE_KEY_SECURE_FILE is set: ${{ ne(variables['ANSIBLE_SSH_PRIVATE_KEY_SECURE_FILE'], '') }}"
+                    echo "AZURE_SERVICE_CONNECTION is set: ${{ ne(variables['AZURE_SERVICE_CONNECTION'], '') }}"
+
+                    echo ""
+                    echo "[Key mapping check - environment variables by prefix / Deploy stage]"
+                    mapfile -t prefixed_vars < <(env | cut -d'=' -f1 | grep -E '^(IWON_|ADO_|ARM_|AZURE_|TFSTATE_|ANSIBLE_)' | sort -u || true)
+                    if [ "${#prefixed_vars[@]}" -eq 0 ]; then
+                      echo "No prefixed variables found in environment."
+                    else
+                      for var_name in "${prefixed_vars[@]}"; do
+                        if [ -n "${!var_name:-}" ]; then
+                          echo "${var_name} is set: true"
+                        else
+                          echo "${var_name} is set: false"
+                        fi
+                      done
+                    fi
+                  displayName: Check variable mappings (temporary, Deploy)
+
                 - task: TerraformInstaller@1
                   displayName: Install Terraform
                   inputs:
