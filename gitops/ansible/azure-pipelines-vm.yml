@@ -698,7 +698,7 @@ stages:
                           -i '${INV_WSL}' \
                           '${SRC_WSL}/$(ANSIBLE_PLAYBOOK_PATH)' \
                           --limit '${{ parameters.deployTarget }}' \
-                          --extra-vars 'deployTarget=${{ parameters.deployTarget }} target_artifact=${ART_WSL} ansible_ssh_private_key_file=~/.ssh/ado_id_rsa'
+                          --extra-vars 'deployTarget=${{ parameters.deployTarget }} target_artifact=${ART_WSL} ansible_ssh_private_key_file=~/.ssh/ado_id_rsa spring_datasource_url=${SPRING_DATASOURCE_URL} spring_datasource_username=${SPRING_DATASOURCE_USERNAME} spring_datasource_password=${SPRING_DATASOURCE_PASSWORD}'
                       "
                     else
                       export PATH="$PATH:/c/Users/koasi/AppData/Roaming/Python/Python311/Scripts:$HOME/.local/bin"
@@ -708,8 +708,11 @@ stages:
                         -i "$(ANSIBLE_INVENTORY_OUT)" \
                         "$(Build.SourcesDirectory)/$(ANSIBLE_PLAYBOOK_PATH)" \
                         --limit "${{ parameters.deployTarget }}" \
-                        --extra-vars "deployTarget=${{ parameters.deployTarget }} target_artifact=$(TARGET_ARTIFACT)"
+                        --extra-vars "deployTarget=${{ parameters.deployTarget }} target_artifact=$(TARGET_ARTIFACT) spring_datasource_url=$(SPRING-DATASOURCE-URL) spring_datasource_username=$(SPRING-DATASOURCE-USERNAME) spring_datasource_password=$(SPRING-DATASOURCE-PASSWORD)"
                     fi
                   displayName: Run Ansible deploy playbook
                   env:
                     PATH: $(GIT_BASH_DIR);$(PATH)
+                    SPRING_DATASOURCE_URL: $(SPRING-DATASOURCE-URL)
+                    SPRING_DATASOURCE_USERNAME: $(SPRING-DATASOURCE-USERNAME)
+                    SPRING_DATASOURCE_PASSWORD: $(SPRING-DATASOURCE-PASSWORD)

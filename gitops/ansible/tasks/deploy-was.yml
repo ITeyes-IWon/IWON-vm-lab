@@ -16,3 +16,6 @@
       KAFKA_SASL_ENABLED: "{{ kafka_client_sasl_enabled }}"
       SPRING_KAFKA_BOOTSTRAP_SERVERS: "{{ kafka_client_bootstrap_servers }}"
       SPRING_KAFKA_PROPERTIES_SECURITY_PROTOCOL: "{{ kafka_client_security_protocol }}"
+      SPRING_DATASOURCE_URL: "{{ spring_datasource_url }}"
+      SPRING_DATASOURCE_USERNAME: "{{ spring_datasource_username }}"
+      SPRING_DATASOURCE_PASSWORD: "{{ spring_datasource_password }}"
