@@ -8,3 +8,9 @@
     java_jar_local_src: "{{ target_artifact }}"
     java_jar_remote_name: app.jar
     java_log_file: "{{ log_dir }}/app.log"
+    java_env_vars:
+      SPRING_DATASOURCE_URL: "{{ spring_datasource_url }}"
+      SPRING_DATASOURCE_USERNAME: "{{ spring_datasource_username }}"
+      SPRING_DATASOURCE_PASSWORD: "{{ spring_datasource_password }}"
+      IWON_WALLET_API_BASE_URL: "{{ iwon_wallet_api_base_url }}"
+      TOKEN_API_BASE_PATH: "{{ token_api_base_path }}"
