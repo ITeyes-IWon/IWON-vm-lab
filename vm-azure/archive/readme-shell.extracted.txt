@@ -324,12 +324,12 @@ sudo cp /opt/vm-lab/backup/dev-app/workspace/workspace/godisappserver-0.0.1-SNAP
 sudo chown -R $USER:$USER /opt/apps/app
 sudo chown -R $USER:$USER /var/log/iwon
 10.3 shell 스크립트 작성
-sudo mkdir -p /opt/scripts /var/log/iwon
+sudo mkdir -p /opt/scripts
 cat <<'EOF' | sudo tee /opt/scripts/start-app.sh
 #!/usr/bin/env bash
 set -euo pipefail
 cd /opt/apps/app
-exec java -jar /opt/apps/app/app.jar >> /var/log/iwon/app.log 2>&1
+exec java -jar /opt/apps/app/app.jar
 EOF
 sudo chmod +x /opt/scripts/start-app.sh
 10.4 systemd 서비스 등록
