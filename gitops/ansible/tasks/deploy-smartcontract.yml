@@ -1,0 +1,79 @@
+---
+- name: Ensure target directory exists
+  ansible.builtin.file:
+    path: /opt/apps/smartcontract
+    state: directory
+    owner: "{{ service_user | default('iwon') }}"
+    group: "{{ service_user | default('iwon') }}"
+    mode: '0755'
+  become: true
+
+- name: Unzip smartcontract artifact
+  ansible.builtin.unarchive:
+    src: "{{ target_artifact }}"
+    dest: /opt/apps/smartcontract
+    owner: "{{ service_user | default('iwon') }}"
+    group: "{{ service_user | default('iwon') }}"
+  become: true
+
+- name: Copy initial .env to VM
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/smartcontract_env/.env"
+    dest: /opt/apps/smartcontract/.env
+    owner: "{{ service_user | default('iwon') }}"
+    group: "{{ service_user | default('iwon') }}"
+    mode: '0600'
+  become: true
+
+- name: Install Node.js (v22.x) and npm
+  ansible.builtin.shell: |
+    curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+    apt-get install -y nodejs
+  args:
+    creates: /usr/bin/node
+  become: true
+
+- name: Run npm ci
+  ansible.builtin.command: npm ci
+  args:
+    chdir: /opt/apps/smartcontract
+  become: true
+  become_user: "{{ service_user | default('iwon') }}"
+
+- name: Execute SmartContract Operation (verify)
+  ansible.builtin.command: npx hardhat run scripts/verify_rotation.js --network sepolia
+  args:
+    chdir: /opt/apps/smartcontract
+  become: true
+  become_user: "{{ service_user | default('iwon') }}"
+  when: sc_operation == 'verify'
+
+- name: Execute SmartContract Operation (rotate-and-sync)
+  ansible.builtin.command: npx hardhat run scripts/rotate_keys.js --network sepolia
+  args:
+    chdir: /opt/apps/smartcontract
+  become: true
+  become_user: "{{ service_user | default('iwon') }}"
+  when: sc_operation == 'rotate-and-sync'
+
+- name: Execute SmartContract Operation (deploy-and-sync)
+  ansible.builtin.command: npx hardhat run scripts/upgrade_proxy.js --network sepolia
+  args:
+    chdir: /opt/apps/smartcontract
+  become: true
+  become_user: "{{ service_user | default('iwon') }}"
+  when: sc_operation == 'deploy-and-sync'
+
+- name: Fetch modified .env back to ADO Agent
+  ansible.builtin.fetch:
+    src: /opt/apps/smartcontract/.env
+    dest: "{{ playbook_dir }}/smartcontract_env/fetched.env"
+    flat: yes
+  become: true
+  when: sc_operation != 'verify'
+
+- name: Remove .env from VM for security
+  ansible.builtin.file:
+    path: /opt/apps/smartcontract/.env
+    state: absent
+  become: true

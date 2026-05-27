@@ -1046,6 +1046,47 @@ bootstrapAgentTarget: bastion
 | app | `app` | `com.iteyes.smart:smart-app` | `*.jar` |
 | integration | `integration` | `com.iteyes.smart:smart-integration` | `*.jar` |
 
+### 6.7.1.1 SmartContract 통합 결정사항 (확정)
+
+IWonPaymentSmartContract 프로젝트를 기존 통합 배포 파이프라인에 편입할 때의 확정 정책은 아래와 같다.
+
+1. 실행 환경 및 위치
+- Option B를 채택한다.
+- 다른 서비스와 동일하게 대상 VM(`smartcontract01` 또는 `integration01`)에 소스(아티팩트)를 배포한 뒤 VM 내부에서 Node.js/Hardhat을 실행한다.
+
+2. 소스(아티팩트) 조달 방식
+- 기존 web/was/app/integration과 동일하게 Azure Artifacts Feed에서 다운로드 후 배포한다.
+- SmartContract도 GitHub Actions에서 소스/스크립트를 zip으로 묶어 Feed에 publish한다.
+- 권장 좌표: `mavenPackageDefinition=com.iteyes.smart:smart-smartcontract`, `artifactPattern=*.zip`
+
+3. 배포 파라미터 확장 방식
+- `deployTarget` 목록에 `smartcontract`를 포함한다.
+- SmartContract 전용 파라미터 `operation`을 사용한다.
+  - 허용값: `verify`, `rotate-and-sync`, `deploy-and-sync`, `sync-only`
+- `operation` 관련 단계는 `deployTarget == smartcontract`일 때만 동작한다.
+
+4. 배포 종속성/순서
+- SmartContract 운영성 작업과 일반 애플리케이션 배포는 파이프라인 내에서 논리적으로 분리 실행한다.
+- SmartContract 작업으로 Key Vault 값이 변경되면, 값을 소비하는 백엔드(`integration` 등)는 별도 배포 실행으로 반영한다.
+
+5. Key Vault 권한 및 Variable Group 정책
+- Variable Group은 통합하지 않고 분리 유지한다.
+  - 일반 배포: `iwon-smart-ops-vg`, `IWON-KV-SECRETS`
+  - SmartContract 설정/동기화: `iwon-keyvault-config`
+- Key Vault 업데이트(`sync_keyvault.js`) 권한은 기존과 동일하게 `azureSubscription: iwon-smart-ops-sc`를 사용한다.
+
+실행 예시(스마트컨트랙트):
+```yaml
+runTerraform: false
+deployTarget: smartcontract
+operation: deploy-and-sync
+artifactFeedName: iwon-smart-feed
+mavenPackageDefinition: com.iteyes.smart:smart-smartcontract
+mavenPackageVersion: latest
+artifactPattern: "*.zip"
+bootstrapAdoAgent: false
+```
+
 4. **bootstrap 시 필수 변수**
 
 ```text

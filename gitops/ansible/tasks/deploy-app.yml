@@ -8,3 +8,10 @@
     java_jar_local_src: "{{ target_artifact }}"
     java_jar_remote_name: app.jar
     java_log_file: "{{ log_dir }}/app.log"
+    java_env_vars:
+      APP_UPLOAD_DIR: "{{ lookup('ansible.builtin.env', 'KV_APP_UPLOAD_DIR') }}"
+      APP_CRYPTO_SECRET: "{{ lookup('ansible.builtin.env', 'KV_APP_CRYPTO_SECRET') }}"
+      APP_HMAC_SECRET: "{{ lookup('ansible.builtin.env', 'KV_APP_HMAC_SECRET') }}"
+      APP_SERVLET_CONTEXT_PATH: "{{ lookup('ansible.builtin.env', 'KV_APP_SERVLET_CONTEXT_PATH') }}"
+      WEB_SERVLET_CONTEXT_PATH: "{{ lookup('ansible.builtin.env', 'KV_WEB_SERVLET_CONTEXT_PATH') }}"
+      SERVER_SERVLET_CONTEXT_PATH: "{{ lookup('ansible.builtin.env', 'KV_APP_SERVLET_CONTEXT_PATH') | default(lookup('ansible.builtin.env', 'KV_SERVER_SERVLET_CONTEXT_PATH'), true) }}"

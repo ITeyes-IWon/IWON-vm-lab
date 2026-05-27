@@ -10,10 +10,10 @@
       ansible.builtin.assert:
         that:
           - deployTarget is defined
-          - deployTarget in ['web', 'was', 'app', 'integration']
+          - deployTarget in ['web', 'was', 'app', 'integration', 'smartcontract']
           - target_artifact is defined
           - target_artifact | length > 0
-        fail_msg: "deployTarget(web/was/app/integration) and target_artifact are required"
+        fail_msg: "deployTarget(web/was/app/integration/smartcontract) and target_artifact are required"
 
   tasks:
     - name: Apply common role

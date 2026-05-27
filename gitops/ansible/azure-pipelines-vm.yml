@@ -4,9 +4,9 @@ trigger:
       - main
   paths:
     include:
-      - gitops/ansible/*
-      - vm-azure/*
-      - vm-ansible/*
+      - gitops/ansible/**
+      - vm-azure/**
+      - vm-ansible/**
 
 
 pr:
@@ -29,6 +29,17 @@ parameters:
       - was
       - app
       - integration
+      - smartcontract
+
+  - name: operation
+    displayName: SmartContract operation (smartcontract 전용)
+    type: string
+    default: verify
+    values:
+      - verify
+      - rotate-and-sync
+      - deploy-and-sync
+      - sync-only
 
   - name: artifactFeedName
     displayName: Artifacts feed name
@@ -118,6 +129,7 @@ variables:
   # Variable Group values override defaults above when same variable names exist.
   - group: iwon-smart-ops-vg
   - group: IWON-KV-SECRETS
+  - group: iwon-keyvault-config
 
 stages:
   - stage: BootstrapAgent
@@ -186,7 +198,9 @@ stages:
                     check_set() {
                       local key_name="$1"
                       local key_value="$2"
-                      if [ -n "$key_value" ]; then
+                      if [ -z "$key_value" ] || [[ "$key_value" =~ ^\$\(.+\)$ ]]; then
+                        echo "$key_name is set: False"
+                      elif [ -n "$key_value" ]; then
                         echo "$key_name is set: True"
                       else
                         echo "$key_name is set: False"
@@ -210,6 +224,11 @@ stages:
                     check_set "IWON-KAFKA-BOOTSTRAP-SERVERS" "${KV_IWON_KAFKA_BOOTSTRAP_SERVERS:-}"
                     check_set "IWON-COMPANY-WALLET-USER-ID" "${KV_IWON_COMPANY_WALLET_USER_ID:-}"
                     check_set "SERVER-SERVLET-CONTEXT-PATH" "${KV_SERVER_SERVLET_CONTEXT_PATH:-}"
+                    check_set "APP-UPLOAD-DIR" "${KV_APP_UPLOAD_DIR:-}"
+                    check_set "APP-CRYPTO-SECRET" "${KV_APP_CRYPTO_SECRET:-}"
+                    check_set "APP-HMAC-SECRET" "${KV_APP_HMAC_SECRET:-}"
+                    check_set "APP-SERVLET-CONTEXT-PATH" "${KV_APP_SERVLET_CONTEXT_PATH:-}"
+                    check_set "WEB-SERVLET-CONTEXT-PATH" "${KV_WEB_SERVLET_CONTEXT_PATH:-}"
                     check_set "SPRING-SESSION-TIMEOUT" "${KV_SPRING_SESSION_TIMEOUT:-}"
                     check_set "LOGGING-FILE-NAME" "${KV_LOGGING_FILE_NAME:-}"
                     check_set "LOG-MAX-FILE-SIZE" "${KV_LOG_MAX_FILE_SIZE:-}"
@@ -217,6 +236,9 @@ stages:
                     check_set "LOG-MAX-HISTORY" "${KV_LOG_MAX_HISTORY:-}"
                     check_set "IWON-P6SPY-LOG-LEVEL" "${KV_IWON_P6SPY_LOG_LEVEL:-}"
                     check_set "IWON-API-AUTH-ENABLED" "${KV_IWON_API_AUTH_ENABLED:-}"
+                    check_set "IWON-OPERATOR-ADDRESS" "${KV_IWON_OPERATOR_ADDRESS:-}"
+                    check_set "IWON-ADMIN-ADDRESS" "${KV_IWON_ADMIN_ADDRESS:-}"
+                    check_set "IWON-SEPOLIA-RPC-URL" "${KV_IWON_SEPOLIA_RPC_URL:-}"
                     check_set "ADO_AGENT_PAT" "${KV_ADO_AGENT_PAT:-}"
                     check_set "TFSTATE_RG" "${KV_TFSTATE_RG:-}"
                     check_set "TFSTATE_STORAGE" "${KV_TFSTATE_STORAGE:-}"
@@ -255,6 +277,11 @@ stages:
                     KV_IWON_KAFKA_BOOTSTRAP_SERVERS: $(IWON-KAFKA-BOOTSTRAP-SERVERS)
                     KV_IWON_COMPANY_WALLET_USER_ID: $(IWON-COMPANY-WALLET-USER-ID)
                     KV_SERVER_SERVLET_CONTEXT_PATH: $(SERVER-SERVLET-CONTEXT-PATH)
+                    KV_APP_UPLOAD_DIR: $(APP-UPLOAD-DIR)
+                    KV_APP_CRYPTO_SECRET: $(APP-CRYPTO-SECRET)
+                    KV_APP_HMAC_SECRET: $(APP-HMAC-SECRET)
+                    KV_APP_SERVLET_CONTEXT_PATH: $(APP-SERVLET-CONTEXT-PATH)
+                    KV_WEB_SERVLET_CONTEXT_PATH: $(WEB-SERVLET-CONTEXT-PATH)
                     KV_SPRING_SESSION_TIMEOUT: $(SPRING-SESSION-TIMEOUT)
                     KV_LOGGING_FILE_NAME: $(LOGGING-FILE-NAME)
                     KV_LOG_MAX_FILE_SIZE: $(LOG-MAX-FILE-SIZE)
@@ -262,6 +289,9 @@ stages:
                     KV_LOG_MAX_HISTORY: $(LOG-MAX-HISTORY)
                     KV_IWON_P6SPY_LOG_LEVEL: $(IWON-P6SPY-LOG-LEVEL)
                     KV_IWON_API_AUTH_ENABLED: $(IWON-API-AUTH-ENABLED)
+                    KV_IWON_OPERATOR_ADDRESS: $(IWON-OPERATOR-ADDRESS)
+                    KV_IWON_ADMIN_ADDRESS: $(IWON-ADMIN-ADDRESS)
+                    KV_IWON_SEPOLIA_RPC_URL: $(IWON-SEPOLIA-RPC-URL)
                     KV_ADO_AGENT_PAT: $(ADO_AGENT_PAT)
                     KV_TFSTATE_RG: $(TFSTATE_RG)
                     KV_TFSTATE_STORAGE: $(TFSTATE_STORAGE)
@@ -328,7 +358,9 @@ stages:
                     check_set() {
                       local key_name="$1"
                       local key_value="$2"
-                      if [ -n "$key_value" ]; then
+                      if [ -z "$key_value" ] || [[ "$key_value" =~ ^\$\(.+\)$ ]]; then
+                        echo "$key_name is set: False"
+                      elif [ -n "$key_value" ]; then
                         echo "$key_name is set: True"
                       else
                         echo "$key_name is set: False"
@@ -352,6 +384,11 @@ stages:
                     check_set "IWON-KAFKA-BOOTSTRAP-SERVERS" "${KV_IWON_KAFKA_BOOTSTRAP_SERVERS:-}"
                     check_set "IWON-COMPANY-WALLET-USER-ID" "${KV_IWON_COMPANY_WALLET_USER_ID:-}"
                     check_set "SERVER-SERVLET-CONTEXT-PATH" "${KV_SERVER_SERVLET_CONTEXT_PATH:-}"
+                    check_set "APP-UPLOAD-DIR" "${KV_APP_UPLOAD_DIR:-}"
+                    check_set "APP-CRYPTO-SECRET" "${KV_APP_CRYPTO_SECRET:-}"
+                    check_set "APP-HMAC-SECRET" "${KV_APP_HMAC_SECRET:-}"
+                    check_set "APP-SERVLET-CONTEXT-PATH" "${KV_APP_SERVLET_CONTEXT_PATH:-}"
+                    check_set "WEB-SERVLET-CONTEXT-PATH" "${KV_WEB_SERVLET_CONTEXT_PATH:-}"
                     check_set "SPRING-SESSION-TIMEOUT" "${KV_SPRING_SESSION_TIMEOUT:-}"
                     check_set "LOGGING-FILE-NAME" "${KV_LOGGING_FILE_NAME:-}"
                     check_set "LOG-MAX-FILE-SIZE" "${KV_LOG_MAX_FILE_SIZE:-}"
@@ -359,6 +396,9 @@ stages:
                     check_set "LOG-MAX-HISTORY" "${KV_LOG_MAX_HISTORY:-}"
                     check_set "IWON-P6SPY-LOG-LEVEL" "${KV_IWON_P6SPY_LOG_LEVEL:-}"
                     check_set "IWON-API-AUTH-ENABLED" "${KV_IWON_API_AUTH_ENABLED:-}"
+                    check_set "IWON-OPERATOR-ADDRESS" "${KV_IWON_OPERATOR_ADDRESS:-}"
+                    check_set "IWON-ADMIN-ADDRESS" "${KV_IWON_ADMIN_ADDRESS:-}"
+                    check_set "IWON-SEPOLIA-RPC-URL" "${KV_IWON_SEPOLIA_RPC_URL:-}"
                     check_set "ADO_AGENT_PAT" "${KV_ADO_AGENT_PAT:-}"
                     check_set "TFSTATE_RG" "${KV_TFSTATE_RG:-}"
                     check_set "TFSTATE_STORAGE" "${KV_TFSTATE_STORAGE:-}"
@@ -397,6 +437,11 @@ stages:
                     KV_IWON_KAFKA_BOOTSTRAP_SERVERS: $(IWON-KAFKA-BOOTSTRAP-SERVERS)
                     KV_IWON_COMPANY_WALLET_USER_ID: $(IWON-COMPANY-WALLET-USER-ID)
                     KV_SERVER_SERVLET_CONTEXT_PATH: $(SERVER-SERVLET-CONTEXT-PATH)
+                    KV_APP_UPLOAD_DIR: $(APP-UPLOAD-DIR)
+                    KV_APP_CRYPTO_SECRET: $(APP-CRYPTO-SECRET)
+                    KV_APP_HMAC_SECRET: $(APP-HMAC-SECRET)
+                    KV_APP_SERVLET_CONTEXT_PATH: $(APP-SERVLET-CONTEXT-PATH)
+                    KV_WEB_SERVLET_CONTEXT_PATH: $(WEB-SERVLET-CONTEXT-PATH)
                     KV_SPRING_SESSION_TIMEOUT: $(SPRING-SESSION-TIMEOUT)
                     KV_LOGGING_FILE_NAME: $(LOGGING-FILE-NAME)
                     KV_LOG_MAX_FILE_SIZE: $(LOG-MAX-FILE-SIZE)
@@ -404,6 +449,9 @@ stages:
                     KV_LOG_MAX_HISTORY: $(LOG-MAX-HISTORY)
                     KV_IWON_P6SPY_LOG_LEVEL: $(IWON-P6SPY-LOG-LEVEL)
                     KV_IWON_API_AUTH_ENABLED: $(IWON-API-AUTH-ENABLED)
+                    KV_IWON_OPERATOR_ADDRESS: $(IWON-OPERATOR-ADDRESS)
+                    KV_IWON_ADMIN_ADDRESS: $(IWON-ADMIN-ADDRESS)
+                    KV_IWON_SEPOLIA_RPC_URL: $(IWON-SEPOLIA-RPC-URL)
                     KV_ADO_AGENT_PAT: $(ADO_AGENT_PAT)
                     KV_TFSTATE_RG: $(TFSTATE_RG)
                     KV_TFSTATE_STORAGE: $(TFSTATE_STORAGE)
@@ -516,7 +564,7 @@ stages:
 
                     if [ -n "${PARAM_ARTIFACT_PATTERN}" ]; then
                       EFFECTIVE_ARTIFACT_PATTERN="${PARAM_ARTIFACT_PATTERN}"
-                    elif [ "${PARAM_DEPLOY_TARGET}" = "web" ]; then
+                    elif [ "${PARAM_DEPLOY_TARGET}" = "web" ] || [ "${PARAM_DEPLOY_TARGET}" = "smartcontract" ]; then
                       EFFECTIVE_ARTIFACT_PATTERN="*.zip"
                     else
                       EFFECTIVE_ARTIFACT_PATTERN="*.jar"
@@ -661,6 +709,32 @@ stages:
 
                 - bash: |
                     set -euo pipefail
+                    if [ "${{ parameters.deployTarget }}" != "smartcontract" ]; then
+                      exit 0
+                    fi
+                    
+                    mkdir -p "$(Build.SourcesDirectory)/gitops/ansible/smartcontract_env"
+                    cat <<EOF > "$(Build.SourcesDirectory)/gitops/ansible/smartcontract_env/.env"
+                    OPERATOR_PRIVATE_KEY=${KV_IWON_COMPANY_PRIVATE_KEY}
+                    ADMIN_PRIVATE_KEY=${KV_IWON_ADMIN_PRIVATE_KEY}
+                    TOKEN_ADDRESS=${KV_IWON_TOKEN_ADDRESS}
+                    PROXY_ADDRESS=${KV_IWON_TOKEN_ADDRESS}
+                    ADMIN_ADDRESS=${KV_IWON_ADMIN_ADDRESS}
+                    OPERATOR_ADDRESS=${KV_IWON_OPERATOR_ADDRESS}
+                    SEPOLIA_RPC_URL=${KV_IWON_SEPOLIA_RPC_URL}
+                    EOF
+                    echo "Generated .env for SmartContract execution on VM"
+                  displayName: 'Generate initial .env for SmartContract'
+                  env:
+                    KV_IWON_COMPANY_PRIVATE_KEY: $(IWON-COMPANY-PRIVATE-KEY)
+                    KV_IWON_ADMIN_PRIVATE_KEY: $(IWON-ADMIN-PRIVATE-KEY)
+                    KV_IWON_TOKEN_ADDRESS: $(IWON-TOKEN-ADDRESS)
+                    KV_IWON_ADMIN_ADDRESS: $(IWON-ADMIN-ADDRESS)
+                    KV_IWON_OPERATOR_ADDRESS: $(IWON-OPERATOR-ADDRESS)
+                    KV_IWON_SEPOLIA_RPC_URL: $(IWON-SEPOLIA-RPC-URL)
+
+                - bash: |
+                    set -euo pipefail
                     export ANSIBLE_HOST_KEY_CHECKING=False
 
                     if command -v wsl.exe >/dev/null 2>&1; then
@@ -698,7 +772,7 @@ stages:
                           -i '${INV_WSL}' \
                           '${SRC_WSL}/$(ANSIBLE_PLAYBOOK_PATH)' \
                           --limit '${{ parameters.deployTarget }}' \
-                          --extra-vars 'deployTarget=${{ parameters.deployTarget }} target_artifact=${ART_WSL} ansible_ssh_private_key_file=~/.ssh/ado_id_rsa'
+                          --extra-vars 'deployTarget=${{ parameters.deployTarget }} target_artifact=${ART_WSL} ansible_ssh_private_key_file=~/.ssh/ado_id_rsa sc_operation=${{ parameters.operation }}'
                       "
                     else
                       export PATH="$PATH:/c/Users/koasi/AppData/Roaming/Python/Python311/Scripts:$HOME/.local/bin"
@@ -708,8 +782,54 @@ stages:
                         -i "$(ANSIBLE_INVENTORY_OUT)" \
                         "$(Build.SourcesDirectory)/$(ANSIBLE_PLAYBOOK_PATH)" \
                         --limit "${{ parameters.deployTarget }}" \
-                        --extra-vars "deployTarget=${{ parameters.deployTarget }} target_artifact=$(TARGET_ARTIFACT)"
+                        --extra-vars "deployTarget=${{ parameters.deployTarget }} target_artifact=$(TARGET_ARTIFACT) sc_operation=${{ parameters.operation }}"
                     fi
                   displayName: Run Ansible deploy playbook
                   env:
                     PATH: $(GIT_BASH_DIR);$(PATH)
+                    KV_APP_UPLOAD_DIR: $(APP-UPLOAD-DIR)
+                    KV_APP_CRYPTO_SECRET: $(APP-CRYPTO-SECRET)
+                    KV_APP_HMAC_SECRET: $(APP-HMAC-SECRET)
+                    KV_APP_SERVLET_CONTEXT_PATH: $(APP-SERVLET-CONTEXT-PATH)
+                    KV_WEB_SERVLET_CONTEXT_PATH: $(WEB-SERVLET-CONTEXT-PATH)
+                    KV_SERVER_SERVLET_CONTEXT_PATH: $(SERVER-SERVLET-CONTEXT-PATH)
+
+                - task: NodeTool@0
+                  displayName: 'Install Node.js 22.x for KV Sync'
+                  condition: and(succeeded(), eq('${{ parameters.deployTarget }}', 'smartcontract'), ne('${{ parameters.operation }}', 'verify'))
+                  inputs:
+                    versionSpec: '22.x'
+
+                - task: AzureCLI@2
+                  displayName: 'Sync Key Vault (sync_keyvault.js) via ADO Service Connection'
+                  condition: and(succeeded(), eq('${{ parameters.deployTarget }}', 'smartcontract'), ne('${{ parameters.operation }}', 'verify'))
+                  inputs:
+                    azureSubscription: $(AZURE_SERVICE_CONNECTION)
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      set -euo pipefail
+                      SC_LOCAL_DIR="$(System.DefaultWorkingDirectory)/sc_local"
+                      mkdir -p "$SC_LOCAL_DIR"
+                      
+                      echo "Extracting smartcontract source for KV Sync..."
+                      unzip -q "$(TARGET_ARTIFACT)" -d "$SC_LOCAL_DIR"
+                      
+                      echo "Moving fetched .env from VM to local directory..."
+                      mv "$(Build.SourcesDirectory)/gitops/ansible/smartcontract_env/fetched.env" "$SC_LOCAL_DIR/.env"
+                      
+                      cd "$SC_LOCAL_DIR"
+                      echo "Running npm ci..."
+                      npm ci
+                      
+                      echo "Running sync_keyvault.js..."
+                      node scripts/sync_keyvault.js
+                  env:
+                    AZ_KEYVAULT_NAME: $(AZ_KEYVAULT_NAME)
+
+                - bash: |
+                    rm -rf "$(System.DefaultWorkingDirectory)/sc_local"
+                    rm -rf "$(Build.SourcesDirectory)/gitops/ansible/smartcontract_env"
+                    echo "Cleaned up .env and temporary files."
+                  displayName: 'Clean up sensitive files'
+                  condition: always()

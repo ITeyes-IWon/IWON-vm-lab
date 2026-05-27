@@ -34,6 +34,11 @@
 | **TOKEN-API-BASE-PATH** | `/api/token` | [cite-start]토큰 API 기본 경로 [cite: 1] |
 | **IWON-KAFKA-BOOTSTRAP-SERVERS** | `10.0.2.60:9092` | [cite-start]Kafka 브로커 주소 [cite: 1] |
 | **IWON-COMPANY-WALLET-USER-ID** | `ITEyes` | [cite-start]통합: 법인 지갑/Treasury 사용자 ID [cite: 1] |
+| **APP-UPLOAD-DIR** | `/mnt/shared` | 애플리케이션 업로드 파일 저장 경로 |
+| **APP-CRYPTO-SECRET** | `R4td9CiO+Pev1U2B/dLUBQCB0LfBBjCjCETw/wxnsOM=` | 애플리케이션 암복호화 비밀키 |
+| **APP-HMAC-SECRET** | `ru4u9lXOzZI2izJIi9f6THwAK+fdDqRY1D/qjrIvVoU=` | 애플리케이션 HMAC 서명 비밀키 |
+| **APP-SERVLET-CONTEXT-PATH** | `/app` | APP 서비스 서블릿 컨텍스트 경로 |
+| **WEB-SERVLET-CONTEXT-PATH** | `/` | WEB 서비스 컨텍스트 경로 |
 | **SERVER-SERVLET-CONTEXT-PATH** | `/app` | [cite-start]애플리케이션 컨텍스트 경로 [cite: 1] |
 | **SPRING-SESSION-TIMEOUT** | `30m` | [cite-start]세션 만료 시간 [cite: 1] |
 | **LOGGING-FILE-NAME** | `logs/app.log` | [cite-start]로그 파일 저장 경로 [cite: 1] |
@@ -146,6 +151,11 @@ az role assignment list --assignee-object-id <SP_OBJECT_ID> --scope $kvId --quer
 6. 파이프라인(또는 Release)에 Variable Group 연결
 7. 배포 대상 런타임 환경변수 매핑 (변수등록시 재수행)
   - IWON_WALLET_AES_KEY_BASE64 = $(iwon-wallet-aes-key-base64)
+  - APP_UPLOAD_DIR = $(app-upload-dir)
+  - APP_CRYPTO_SECRET = $(app-crypto-secret)
+  - APP_HMAC_SECRET = $(app-hmac-secret)
+  - APP_SERVLET_CONTEXT_PATH = $(app-servlet-context-path)
+  - WEB_SERVLET_CONTEXT_PATH = $(web-servlet-context-path)
 
 **변수등록시 반복 수행 항목**
 - 5.1-5 단계: Key Vault에 새 secret 추가/삭제 후 Variable Group에 반영할 때마다 (변수등록시 재수행)
@@ -183,6 +193,13 @@ az role assignment list --assignee-object-id <SP_OBJECT_ID> --scope $kvId --quer
 | **5.1** | 5단계: Variable Group + Add | ✅ 변수등록시 재수행 |
 | **5.1** | 6단계: 파이프라인에 Variable Group 연결 | 최초 1회 |
 | **5.1** | 7단계: 환경변수 매핑 | ✅ 변수등록시 재수행 |
+
+이번에 추가된 secret(예시):
+- app-upload-dir
+- app-crypto-secret
+- app-hmac-secret
+- app-servlet-context-path
+- web-servlet-context-path
 
 ---
 
