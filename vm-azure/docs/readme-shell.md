@@ -461,7 +461,7 @@ cat <<'EOF' | sudo tee /opt/scripts/start-app.sh
 #!/usr/bin/env bash
 set -euo pipefail
 cd /opt/apps/app
-exec java -jar /opt/apps/app/app.jar >> /var/log/iwon/app.log 2>&1
+exec java -jar /opt/apps/app/app.jar
 EOF
 sudo chmod +x /opt/scripts/start-app.sh
 ```

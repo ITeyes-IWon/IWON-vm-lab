@@ -15,3 +15,9 @@
       APP_SERVLET_CONTEXT_PATH: "{{ lookup('ansible.builtin.env', 'KV_APP_SERVLET_CONTEXT_PATH') }}"
       WEB_SERVLET_CONTEXT_PATH: "{{ lookup('ansible.builtin.env', 'KV_WEB_SERVLET_CONTEXT_PATH') }}"
       SERVER_SERVLET_CONTEXT_PATH: "{{ lookup('ansible.builtin.env', 'KV_APP_SERVLET_CONTEXT_PATH') | default(lookup('ansible.builtin.env', 'KV_SERVER_SERVLET_CONTEXT_PATH'), true) }}"
+      SPRING_DATASOURCE_URL: "{{ spring_datasource_url }}"
+      SPRING_DATASOURCE_USERNAME: "{{ spring_datasource_username }}"
+      SPRING_DATASOURCE_PASSWORD: "{{ spring_datasource_password }}"
+      IWON_WALLET_API_BASE_URL: "{{ iwon_wallet_api_base_url }}"
+      TOKEN_API_BASE_PATH: "{{ token_api_base_path }}"
+
