@@ -1,6 +1,6 @@
 ---
 - name: GitOps wrapper deploy playbook
-  hosts: "{{ deployTarget }}"
+  hosts: "{{ 'smartcontract01' if deployTarget == 'smartcontract' else deployTarget }}"
   become: true
   vars:
     repo_root: "{{ playbook_dir }}/../.."
