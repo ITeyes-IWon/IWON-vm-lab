@@ -820,6 +820,32 @@ stages:
                   inputs:
                     versionSpec: '22.x'
 
+                - bash: |
+                    set -euo pipefail
+
+                    if command -v az >/dev/null 2>&1; then
+                      echo "Azure CLI already installed: $(az version | python3 -c 'import json,sys; print(json.load(sys.stdin).get("azure-cli", "unknown"))')"
+                      exit 0
+                    fi
+
+                    if command -v sudo >/dev/null 2>&1; then
+                      SUDO="sudo"
+                    else
+                      SUDO=""
+                    fi
+
+                    ${SUDO} apt-get update -y
+                    ${SUDO} apt-get install -y ca-certificates curl apt-transport-https lsb-release gnupg
+                    ${SUDO} mkdir -p /etc/apt/keyrings
+                    curl -sLS https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | ${SUDO} tee /etc/apt/keyrings/microsoft.gpg >/dev/null
+                    AZ_REPO="$(lsb_release -cs)"
+                    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ ${AZ_REPO} main" | ${SUDO} tee /etc/apt/sources.list.d/azure-cli.list >/dev/null
+                    ${SUDO} apt-get update -y
+                    ${SUDO} apt-get install -y azure-cli
+                    az version
+                  displayName: 'Ensure Azure CLI for KV Sync'
+                  condition: and(succeeded(), eq('${{ parameters.deployTarget }}', 'smartcontract'), ne('${{ parameters.operation }}', 'verify'))
+
                 - task: AzureCLI@2
                   displayName: 'Sync Key Vault (sync_keyvault.js) via ADO Service Connection'
                   condition: and(succeeded(), eq('${{ parameters.deployTarget }}', 'smartcontract'), ne('${{ parameters.operation }}', 'verify'))
