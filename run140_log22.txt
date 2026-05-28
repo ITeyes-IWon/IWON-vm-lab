@@ -1,0 +1,44 @@
+2026-05-28T00:11:11.1832861Z ##[section]Starting: Sync Key Vault (sync_keyvault.js) via ADO Service Connection
+2026-05-28T00:11:11.1860359Z ==============================================================================
+2026-05-28T00:11:11.1860597Z Task         : Azure CLI
+2026-05-28T00:11:11.1860723Z Description  : Run Azure CLI commands against an Azure subscription in a PowerShell Core/Shell script when running on Linux agent or PowerShell/PowerShell Core/Batch script when running on Windows agent.
+2026-05-28T00:11:11.1861022Z Version      : 2.274.1
+2026-05-28T00:11:11.1861140Z Author       : Microsoft Corporation
+2026-05-28T00:11:11.1861264Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/deploy/azure-cli
+2026-05-28T00:11:11.1861432Z ==============================================================================
+2026-05-28T00:11:11.4509842Z [command]/usr/bin/az version
+2026-05-28T00:11:11.7021375Z {
+2026-05-28T00:11:11.7022614Z   "azure-cli": "2.86.0",
+2026-05-28T00:11:11.7022911Z   "azure-cli-core": "2.86.0",
+2026-05-28T00:11:11.7023269Z   "azure-cli-telemetry": "1.1.0",
+2026-05-28T00:11:11.7023530Z   "extensions": {}
+2026-05-28T00:11:11.7023778Z }
+2026-05-28T00:11:11.7066927Z Setting AZURE_CONFIG_DIR env variable to: /opt/ado-agent/_work/_temp/.azclitask
+2026-05-28T00:11:11.7082754Z Setting active cloud to: AzureCloud
+2026-05-28T00:11:11.7113990Z [command]/usr/bin/az cloud set -n AzureCloud
+2026-05-28T00:11:13.7918705Z [command]/usr/bin/az login --service-principal -u *** --password=*** --tenant f1a1af5e-8ee6-47a5-aadc-fd3c6f31dfe5 --allow-no-subscriptions
+2026-05-28T00:11:15.0645617Z [
+2026-05-28T00:11:15.0645899Z   {
+2026-05-28T00:11:15.0646132Z     "cloudName": "AzureCloud",
+2026-05-28T00:11:15.0646425Z     "homeTenantId": "f1a1af5e-8ee6-47a5-aadc-fd3c6f31dfe5",
+2026-05-28T00:11:15.0646815Z     "id": "51be5***3-cf60-4f1f-8b9f-fb4b31daa579",
+2026-05-28T00:11:15.0647084Z     "isDefault": true,
+2026-05-28T00:11:15.0647315Z     "managedByTenants": [],
+2026-05-28T00:11:15.0984045Z     "name": "아이티아이즈-sub-gtm-msp-ktpartners-17",
+2026-05-28T00:11:15.0984658Z     "state": "Enabled",
+2026-05-28T00:11:15.0984991Z     "tenantId": "f1a1af5e-8ee6-47a5-aadc-fd3c6f31dfe5",
+2026-05-28T00:11:15.0985306Z     "user": {
+2026-05-28T00:11:15.0985714Z       "name": "***",
+2026-05-28T00:11:15.0986011Z       "type": "servicePrincipal"
+2026-05-28T00:11:15.0986299Z     }
+2026-05-28T00:11:15.0986528Z   }
+2026-05-28T00:11:15.0986757Z ]
+2026-05-28T00:11:15.0990863Z [command]/usr/bin/az account set --subscription 51be5***3-cf60-4f1f-8b9f-fb4b31daa579
+2026-05-28T00:11:15.3969099Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/azureclitaskscript177992707***44.sh
+2026-05-28T00:11:15.4076552Z Extracting smartcontract source for KV Sync...
+2026-05-28T00:11:15.4127564Z Moving fetched .env from VM to local directory...
+2026-05-28T00:11:15.4150273Z mv: cannot stat '/opt/ado-agent/_work/2/s/gitops/ansible/smartcontract_env/fetched.env': No such file or directory
+2026-05-28T00:11:15.4172115Z 
+2026-05-28T00:11:15.4208409Z ##[error]Script failed with exit code: 1
+2026-05-28T00:11:15.4212826Z [command]/usr/bin/az account clear
+2026-05-28T00:11:16.3861413Z ##[section]Finishing: Sync Key Vault (sync_keyvault.js) via ADO Service Connection

@@ -1,0 +1,76 @@
+2026-05-28T00:25:13.4265216Z ##[section]Starting: Sync Key Vault (sync_keyvault.js) via ADO Service Connection
+2026-05-28T00:25:13.4272753Z ==============================================================================
+2026-05-28T00:25:13.4272969Z Task         : Azure CLI
+2026-05-28T00:25:13.4273081Z Description  : Run Azure CLI commands against an Azure subscription in a PowerShell Core/Shell script when running on Linux agent or PowerShell/PowerShell Core/Batch script when running on Windows agent.
+2026-05-28T00:25:13.4273375Z Version      : 2.274.1
+2026-05-28T00:25:13.4273501Z Author       : Microsoft Corporation
+2026-05-28T00:25:13.4273637Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/deploy/azure-cli
+2026-05-28T00:25:13.4273818Z ==============================================================================
+2026-05-28T00:25:13.6804289Z [command]/usr/bin/az version
+2026-05-28T00:25:13.9442449Z {
+2026-05-28T00:25:13.9443743Z   "azure-cli": "2.86.0",
+2026-05-28T00:25:13.9444776Z   "azure-cli-core": "2.86.0",
+2026-05-28T00:25:13.9445859Z   "azure-cli-telemetry": "1.1.0",
+2026-05-28T00:25:13.9446281Z   "extensions": {}
+2026-05-28T00:25:13.9446644Z }
+2026-05-28T00:25:13.9483977Z Setting AZURE_CONFIG_DIR env variable to: /opt/ado-agent/_work/_temp/.azclitask
+2026-05-28T00:25:13.9496896Z Setting active cloud to: AzureCloud
+2026-05-28T00:25:13.9522886Z [command]/usr/bin/az cloud set -n AzureCloud
+2026-05-28T00:25:16.1177297Z [command]/usr/bin/az login --service-principal -u *** --password=*** --tenant f1a1af5e-8ee6-47a5-aadc-fd3c6f31dfe5 --allow-no-subscriptions
+2026-05-28T00:25:17.0150311Z [
+2026-05-28T00:25:17.0151642Z   {
+2026-05-28T00:25:17.0152441Z     "cloudName": "AzureCloud",
+2026-05-28T00:25:17.0153284Z     "homeTenantId": "f1a1af5e-8ee6-47a5-aadc-fd3c6f31dfe5",
+2026-05-28T00:25:17.0154175Z     "id": "51be5***3-cf60-4f1f-8b9f-fb4b31daa579",
+2026-05-28T00:25:17.0154710Z     "isDefault": true,
+2026-05-28T00:25:17.0155413Z     "managedByTenants": [],
+2026-05-28T00:25:17.0391639Z     "name": "아이티아이즈-sub-gtm-msp-ktpartners-17",
+2026-05-28T00:25:17.0393947Z     "state": "Enabled",
+2026-05-28T00:25:17.0394306Z     "tenantId": "f1a1af5e-8ee6-47a5-aadc-fd3c6f31dfe5",
+2026-05-28T00:25:17.0394626Z     "user": {
+2026-05-28T00:25:17.0501163Z       "name": "***",
+2026-05-28T00:25:17.0501816Z       "type": "servicePrincipal"
+2026-05-28T00:25:17.0502149Z     }
+2026-05-28T00:25:17.0502402Z   }
+2026-05-28T00:25:17.0502632Z ]
+2026-05-28T00:25:17.0507165Z [command]/usr/bin/az account set --subscription 51be5***3-cf60-4f1f-8b9f-fb4b31daa579
+2026-05-28T00:25:17.3613012Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/azureclitaskscript1779927913677.sh
+2026-05-28T00:25:17.3711753Z Extracting smartcontract source for KV Sync...
+2026-05-28T00:25:17.3795671Z Moving fetched .env from VM to local directory...
+2026-05-28T00:25:17.3821832Z Running npm ci...
+2026-05-28T00:25:21.1236941Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-05-28T00:25:21.2307048Z npm warn deprecated lodash.isequal@4.5.0: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
+2026-05-28T00:25:21.3411005Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2026-05-28T00:25:21.3416301Z npm warn deprecated glob@5.0.15: Glob versions prior to v9 are no longer supported
+2026-05-28T00:25:21.3423486Z npm warn deprecated glob@8.1.0: Glob versions prior to v9 are no longer supported
+2026-05-28T00:25:21.3432380Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2026-05-28T00:25:21.3634838Z npm warn deprecated glob@7.1.7: Glob versions prior to v9 are no longer supported
+2026-05-28T00:25:27.0848349Z 
+2026-05-28T00:25:27.0852808Z added 708 packages, and audited 709 packages in 10s
+2026-05-28T00:25:27.0853044Z 
+2026-05-28T00:25:27.0853366Z 121 packages are looking for funding
+2026-05-28T00:25:27.0854194Z   run `npm fund` for details
+2026-05-28T00:25:27.1723708Z 
+2026-05-28T00:25:27.1724427Z 60 vulnerabilities (15 low, 28 moderate, 16 high, 1 critical)
+2026-05-28T00:25:27.1725734Z 
+2026-05-28T00:25:27.1728298Z To address issues that do not require attention, run:
+2026-05-28T00:25:27.1729809Z   npm audit fix
+2026-05-28T00:25:27.1730885Z 
+2026-05-28T00:25:27.1731939Z To address all issues possible (including breaking changes), run:
+2026-05-28T00:25:27.1733220Z   npm audit fix --force
+2026-05-28T00:25:27.1733652Z 
+2026-05-28T00:25:27.1734808Z Some issues need review, and may require choosing
+2026-05-28T00:25:27.1736027Z a different dependency.
+2026-05-28T00:25:27.1736452Z 
+2026-05-28T00:25:27.1737210Z Run `npm audit` for details.
+2026-05-28T00:25:27.2171258Z Running sync_keyvault.js...
+2026-05-28T00:25:27.2422523Z Azure Key Vault 동기화 시작: iwonsvckvkrc001
+2026-05-28T00:25:28.0813003Z   [KV] set IWON-COMPANY-PRIVATE-KEY
+2026-05-28T00:25:28.7276732Z   [KV] set IWON-ADMIN-PRIVATE-KEY
+2026-05-28T00:25:29.4199727Z   [KV] set IWON-ADMIN-ADDRESS
+2026-05-28T00:25:30.1113707Z   [KV] set IWON-OPERATOR-ADDRESS
+2026-05-28T00:25:30.7874061Z   [KV] set IWON-TOKEN-ADDRESS
+2026-05-28T00:25:30.7874839Z Key Vault 동기화 완료.
+2026-05-28T00:25:30.7919310Z 
+2026-05-28T00:25:30.7953798Z [command]/usr/bin/az account clear
+2026-05-28T00:25:31.3775466Z ##[section]Finishing: Sync Key Vault (sync_keyvault.js) via ADO Service Connection

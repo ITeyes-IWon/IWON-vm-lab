@@ -1,0 +1,66 @@
+2026-05-28T00:20:12.2305616Z ##[section]Starting: Run Ansible deploy playbook
+2026-05-28T00:20:12.2309779Z ==============================================================================
+2026-05-28T00:20:12.2309894Z Task         : Bash
+2026-05-28T00:20:12.2309965Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:20:12.2310052Z Version      : 3.268.1
+2026-05-28T00:20:12.2310123Z Author       : Microsoft Corporation
+2026-05-28T00:20:12.2310200Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:20:12.2310288Z ==============================================================================
+2026-05-28T00:20:12.3491019Z Generating script.
+2026-05-28T00:20:12.3523196Z ========================== Starting Command Output ===========================
+2026-05-28T00:20:12.3548175Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/79700b47-23f4-4a2a-b623-f20b5b99d0ae.sh
+2026-05-28T00:20:12.8650441Z 
+2026-05-28T00:20:12.8651235Z PLAY [GitOps wrapper deploy playbook] ******************************************
+2026-05-28T00:20:12.8732940Z 
+2026-05-28T00:20:12.8733716Z TASK [Gathering Facts] *********************************************************
+2026-05-28T00:20:14.0862000Z ok: [smartcontract01]
+2026-05-28T00:20:14.0915299Z 
+2026-05-28T00:20:14.0916045Z TASK [Validate required variables] *********************************************
+2026-05-28T00:20:14.1148816Z ok: [smartcontract01] => {
+2026-05-28T00:20:14.1149571Z     "changed": false,
+2026-05-28T00:20:14.1150159Z     "msg": "All assertions passed"
+2026-05-28T00:20:14.1150649Z }
+2026-05-28T00:20:14.1232431Z 
+2026-05-28T00:20:14.1233546Z TASK [Apply common role] *******************************************************
+2026-05-28T00:20:14.1433719Z 
+2026-05-28T00:20:14.1436776Z TASK [common : Install common packages] ****************************************
+2026-05-28T00:20:16.1922107Z ok: [smartcontract01]
+2026-05-28T00:20:16.1963691Z 
+2026-05-28T00:20:16.1964379Z TASK [common : Ensure shared directories exist] ********************************
+2026-05-28T00:20:16.5347598Z ok: [smartcontract01] => (item={'path': '/opt/vm-lab', 'mode': '0755'})
+2026-05-28T00:20:16.7338876Z ok: [smartcontract01] => (item={'path': '/opt/scripts', 'mode': '0755'})
+2026-05-28T00:20:16.9651503Z ok: [smartcontract01] => (item={'path': '/var/log/iwon', 'mode': '0755'})
+2026-05-28T00:20:16.9720429Z 
+2026-05-28T00:20:16.9722942Z TASK [Include deploy target tasks] *********************************************
+2026-05-28T00:20:16.9931035Z included: /opt/ado-agent/_work/2/s/gitops/ansible/tasks/deploy-smartcontract.yml for smartcontract01
+2026-05-28T00:20:16.9988245Z 
+2026-05-28T00:20:16.9988989Z TASK [Ensure target directory exists] ******************************************
+2026-05-28T00:20:17.2182735Z ok: [smartcontract01]
+2026-05-28T00:20:17.2270652Z 
+2026-05-28T00:20:17.2271365Z TASK [Unzip smartcontract artifact] ********************************************
+2026-05-28T00:20:17.9561976Z ok: [smartcontract01]
+2026-05-28T00:20:17.9617868Z 
+2026-05-28T00:20:17.9618631Z TASK [Copy initial .env to VM] *************************************************
+2026-05-28T00:20:18.4650979Z changed: [smartcontract01]
+2026-05-28T00:20:18.4704928Z 
+2026-05-28T00:20:18.4706452Z TASK [Install Node.js (v22.x) and npm] *****************************************
+2026-05-28T00:20:18.7663070Z ok: [smartcontract01]
+2026-05-28T00:20:18.7706864Z 
+2026-05-28T00:20:18.7708498Z TASK [Run npm ci] **************************************************************
+2026-05-28T00:20:32.6052128Z changed: [smartcontract01]
+2026-05-28T00:20:32.6118815Z 
+2026-05-28T00:20:32.6119777Z TASK [Execute SmartContract Operation (verify)] ********************************
+2026-05-28T00:20:32.6268482Z skipping: [smartcontract01]
+2026-05-28T00:20:32.6316476Z 
+2026-05-28T00:20:32.6317634Z TASK [Execute SmartContract Operation (rotate-and-sync)] ***********************
+2026-05-28T00:20:32.6461673Z skipping: [smartcontract01]
+2026-05-28T00:20:32.6514054Z 
+2026-05-28T00:20:32.6514723Z TASK [Execute SmartContract Operation (deploy-and-sync)] ***********************
+2026-05-28T00:20:44.5552337Z fatal: [smartcontract01]: FAILED! => {"changed": true, "cmd": ["npx", "hardhat", "run", "scripts/upgrade_proxy.js", "--network", "sepolia"], "delta": "0:00:11.690649", "end": "2026-05-28 09:20:44.515652", "msg": "non-zero return code", "rc": 1, "start": "2026-05-28 09:20:32.825003", "stderr": "[Error: EACCES: permission denied, mkdir '/opt***s/smartcontract/.openzeppelin/chain-***.lock'] {\n  errno: -13,\n  code: 'EACCES',\n  syscall: 'mkdir',\n  path: '/opt***s/smartcontract/.openzeppelin/chain-***.lock'\n}", "stderr_lines": ["[Error: EACCES: permission denied, mkdir '/opt***s/smartcontract/.openzeppelin/chain-***.lock'] {", "  errno: -13,", "  code: 'EACCES',", "  syscall: 'mkdir',", "  path: '/opt***s/smartcontract/.openzeppelin/chain-***.lock'", "}"], "stdout": "[dotenv@17.2.3] injecting env (7) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }\n[dotenv@17.2.3] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`\n[dotenv@17.2.3] injecting env (7) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com\nUpgrading proxy at ***\nRunning validateUpgrade against proxy: ***", "stdout_lines": ["[dotenv@17.2.3] injecting env (7) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }", "[dotenv@17.2.3] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`", "[dotenv@17.2.3] injecting env (7) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com", "Upgrading proxy at ***", "Running validateUpgrade against proxy: ***"]}
+2026-05-28T00:20:44.5554987Z 
+2026-05-28T00:20:44.5555447Z PLAY RECAP *********************************************************************
+2026-05-28T00:20:44.5555920Z smartcontract01            : ok=10   changed=2    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0   
+2026-05-28T00:20:44.5556237Z 
+2026-05-28T00:20:44.6151510Z 
+2026-05-28T00:20:44.6169675Z ##[error]Bash exited with code '2'.
+2026-05-28T00:20:44.6195723Z ##[section]Finishing: Run Ansible deploy playbook

@@ -1,0 +1,207 @@
+2026-05-28T00:09:15.1106056Z ##[section]Starting: Ensure Azure CLI for KV Sync
+2026-05-28T00:09:15.1110202Z ==============================================================================
+2026-05-28T00:09:15.1110319Z Task         : Bash
+2026-05-28T00:09:15.1110386Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:09:15.1110466Z Version      : 3.268.1
+2026-05-28T00:09:15.1110533Z Author       : Microsoft Corporation
+2026-05-28T00:09:15.1110607Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:09:15.1110714Z ==============================================================================
+2026-05-28T00:09:15.2531821Z Generating script.
+2026-05-28T00:09:15.2561477Z ========================== Starting Command Output ===========================
+2026-05-28T00:09:15.2580348Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/42cdd228-d19b-4fe2-9128-a1baf366bcbb.sh
+2026-05-28T00:09:15.3909895Z Hit:1 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+2026-05-28T00:09:15.3913129Z Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
+2026-05-28T00:09:15.3913545Z Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
+2026-05-28T00:09:15.3913910Z Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
+2026-05-28T00:09:17.0528247Z Reading package lists...
+2026-05-28T00:09:17.1139898Z Reading package lists...
+2026-05-28T00:09:17.3526505Z Building dependency tree...
+2026-05-28T00:09:17.3532464Z Reading state information...
+2026-05-28T00:09:17.5635660Z lsb-release is already the newest version (11.1.0ubuntu4).
+2026-05-28T00:09:17.5641764Z lsb-release set to manually installed.
+2026-05-28T00:09:17.5642120Z ca-certificates is already the newest version (20240203~22.04.1).
+2026-05-28T00:09:17.5642458Z curl is already the newest version (7.81.0-1ubuntu1.24).
+2026-05-28T00:09:17.5642787Z gnupg is already the newest version (2.2.27-3ubuntu2.5).
+2026-05-28T00:09:17.5643105Z gnupg set to manually installed.
+2026-05-28T00:09:17.5643436Z The following NEW packages will be installed:
+2026-05-28T00:09:17.5648114Z   apt-transport-https
+2026-05-28T00:09:17.5929297Z 0 upgraded, 1 newly installed, 0 to remove and 22 not upgraded.
+2026-05-28T00:09:17.5931425Z Need to get 1510 B of archives.
+2026-05-28T00:09:17.5932110Z After this operation, 170 kB of additional disk space will be used.
+2026-05-28T00:09:17.5933372Z Get:1 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 apt-transport-https all 2.4.*** [1510 B]
+2026-05-28T00:09:17.7598425Z debconf: unable to initialize frontend: Dialog
+2026-05-28T00:09:17.7599618Z debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+2026-05-28T00:09:17.7600011Z debconf: falling back to frontend: Readline
+2026-05-28T00:09:17.7665686Z debconf: unable to initialize frontend: Readline
+2026-05-28T00:09:17.7668336Z debconf: (This frontend requires a controlling tty.)
+2026-05-28T00:09:17.7668725Z debconf: falling back to frontend: Teletype
+2026-05-28T00:09:17.7699493Z dpkg-preconfigure: unable to re-open stdin: 
+2026-05-28T00:09:17.7966692Z Fetched 1510 B in 0s (69.7 kB/s)
+2026-05-28T00:09:17.8227890Z Selecting previously unselected package apt-transport-https.
+2026-05-28T00:09:17.8246533Z (Reading database ... 
+2026-05-28T00:09:17.8247536Z (Reading database ... 5%
+2026-05-28T00:09:17.8247955Z (Reading database ... 10%
+2026-05-28T00:09:17.8248252Z (Reading database ... 15%
+2026-05-28T00:09:17.8248539Z (Reading database ... 20%
+2026-05-28T00:09:17.8248854Z (Reading database ... 25%
+2026-05-28T00:09:17.8249128Z (Reading database ... 30%
+2026-05-28T00:09:17.8249409Z (Reading database ... 35%
+2026-05-28T00:09:17.8249776Z (Reading database ... 40%
+2026-05-28T00:09:17.8250053Z (Reading database ... 45%
+2026-05-28T00:09:17.8263143Z (Reading database ... 50%
+2026-05-28T00:09:17.8281291Z (Reading database ... 55%
+2026-05-28T00:09:17.8295026Z (Reading database ... 60%
+2026-05-28T00:09:17.8305527Z (Reading database ... 65%
+2026-05-28T00:09:17.8311539Z (Reading database ... 70%
+2026-05-28T00:09:17.8342913Z (Reading database ... 75%
+2026-05-28T00:09:17.8457399Z (Reading database ... 80%
+2026-05-28T00:09:17.8482397Z (Reading database ... 85%
+2026-05-28T00:09:17.8511667Z (Reading database ... 90%
+2026-05-28T00:09:17.8881922Z (Reading database ... 95%
+2026-05-28T00:09:17.8883204Z (Reading database ... 100%
+2026-05-28T00:09:17.8884186Z (Reading database ... 135558 files and directories currently installed.)
+2026-05-28T00:09:17.8908095Z Preparing to unpack .../apt-transport-https_2.4.***_all.deb ...
+2026-05-28T00:09:17.9015527Z Unpacking apt-transport-https (2.4.***) ...
+2026-05-28T00:09:17.9673007Z Setting up apt-transport-https (2.4.***) ...
+2026-05-28T00:09:18.3495815Z 
+2026-05-28T00:09:18.3496847Z Pending kernel upgrade!
+2026-05-28T00:09:18.3497823Z 
+2026-05-28T00:09:18.3498300Z Running kernel version:
+2026-05-28T00:09:18.3498610Z   6.8.0-1044-azure
+2026-05-28T00:09:18.3498736Z 
+2026-05-28T00:09:18.3499006Z Diagnostics:
+2026-05-28T00:09:18.3499378Z   The currently running kernel version is not the expected kernel version 6.8.0-1052-azure.
+2026-05-28T00:09:18.3499584Z 
+2026-05-28T00:09:18.3499957Z Restarting the system to load the new kernel will not be handled automatically, so you should consider rebooting. [Return]
+2026-05-28T00:09:18.3500170Z 
+2026-05-28T00:09:18.3500445Z Services to be restarted:
+2026-05-28T00:09:18.3544259Z  systemctl restart chrony.service
+2026-05-28T00:09:18.3673696Z  systemctl restart irqbalance.service
+2026-05-28T00:09:18.3723528Z  systemctl restart multipathd.service
+2026-05-28T00:09:18.3812741Z  systemctl restart packagekit.service
+2026-05-28T00:09:18.3854830Z  systemctl restart polkit.service
+2026-05-28T00:09:18.3895987Z  systemctl restart rsyslog.service
+2026-05-28T00:09:18.3939991Z  systemctl restart serial-getty@ttyS0.service
+2026-05-28T00:09:18.3981966Z  systemctl restart systemd-journald.service
+2026-05-28T00:09:18.4066953Z  /etc/needrestart/restart.d/systemd-manager
+2026-05-28T00:09:18.4111631Z  systemctl restart systemd-networkd.service
+2026-05-28T00:09:18.4162908Z  systemctl restart systemd-resolved.service
+2026-05-28T00:09:18.4211177Z  systemctl restart systemd-udevd.service
+2026-05-28T00:09:18.4356226Z  systemctl restart uuidd.service
+2026-05-28T00:09:18.4397783Z  systemctl restart vsts.agent.iteyes\x2dito.Default.bastion01\x2dado.service
+2026-05-28T00:09:18.4442580Z  systemctl restart walinuxagent.service
+2026-05-28T00:09:18.4443770Z 
+2026-05-28T00:09:18.4444085Z Service restarts being deferred:
+2026-05-28T00:09:18.4444693Z  /etc/needrestart/restart.d/dbus.service
+2026-05-28T00:09:18.4444990Z  systemctl restart getty@tty1.service
+2026-05-28T00:09:18.4445284Z  systemctl restart networkd-dispatcher.service
+2026-05-28T00:09:18.4445577Z  systemctl restart systemd-logind.service
+2026-05-28T00:09:18.4445887Z  systemctl restart unattended-upgrades.service
+2026-05-28T00:09:18.4446196Z  systemctl restart user@1000.service
+2026-05-28T00:09:18.4446325Z 
+2026-05-28T00:09:18.4446588Z No containers need to be restarted.
+2026-05-28T00:09:18.4446716Z 
+2026-05-28T00:09:18.4447008Z No user sessions are running outdated binaries.
+2026-05-28T00:09:18.4447134Z 
+2026-05-28T00:09:18.4447426Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-05-28T00:09:20.4729608Z Get:1 https://packages.microsoft.com/repos/azure-cli jammy InRelease [3596 B]
+2026-05-28T00:09:20.5549155Z Get:2 https://packages.microsoft.com/repos/azure-cli jammy/main amd64 Packages [3262 B]
+2026-05-28T00:09:20.5629016Z Get:3 https://packages.microsoft.com/repos/azure-cli jammy/main all Packages [1093 B]
+2026-05-28T00:09:20.6297370Z Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+2026-05-28T00:09:20.6306833Z Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
+2026-05-28T00:09:20.6308752Z Hit:6 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
+2026-05-28T00:09:20.6312762Z Hit:7 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
+2026-05-28T00:09:20.9646231Z Fetched 7951 B in 1s (***.9 kB/s)
+2026-05-28T00:09:22.0501948Z Reading package lists...
+2026-05-28T00:09:22.1215726Z Reading package lists...
+2026-05-28T00:09:22.3546607Z Building dependency tree...
+2026-05-28T00:09:22.3552763Z Reading state information...
+2026-05-28T00:09:22.5632098Z The following NEW packages will be installed:
+2026-05-28T00:09:22.5643598Z   azure-cli
+2026-05-28T00:09:22.6132645Z 0 upgraded, 1 newly installed, 0 to remove and 22 not upgraded.
+2026-05-28T00:09:22.6133250Z Need to get 55.1 MB of archives.
+2026-05-28T00:09:22.6133641Z After this operation, 606 MB of additional disk space will be used.
+2026-05-28T00:09:22.6134121Z Get:1 https://packages.microsoft.com/repos/azure-cli jammy/main amd64 azure-cli amd64 2.86.0-1~jammy [55.1 MB]
+2026-05-28T00:09:23.1105801Z debconf: unable to initialize frontend: Dialog
+2026-05-28T00:09:23.1108870Z debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+2026-05-28T00:09:23.1109316Z debconf: falling back to frontend: Readline
+2026-05-28T00:09:23.1160872Z debconf: unable to initialize frontend: Readline
+2026-05-28T00:09:23.1161552Z debconf: (This frontend requires a controlling tty.)
+2026-05-28T00:09:23.1162031Z debconf: falling back to frontend: Teletype
+2026-05-28T00:09:23.1193401Z dpkg-preconfigure: unable to re-open stdin: 
+2026-05-28T00:09:23.1474751Z Fetched 55.1 MB in 0s (***6 MB/s)
+2026-05-28T00:09:23.2906630Z Selecting previously unselected package azure-cli.
+2026-05-28T00:09:23.2925028Z (Reading database ... 
+2026-05-28T00:09:23.2925709Z (Reading database ... 5%
+2026-05-28T00:09:23.2927570Z (Reading database ... 10%
+2026-05-28T00:09:23.2928074Z (Reading database ... 15%
+2026-05-28T00:09:23.2928373Z (Reading database ... 20%
+2026-05-28T00:09:23.2928662Z (Reading database ... 25%
+2026-05-28T00:09:23.2928956Z (Reading database ... 30%
+2026-05-28T00:09:23.2929221Z (Reading database ... 35%
+2026-05-28T00:09:23.2929507Z (Reading database ... 40%
+2026-05-28T00:09:23.2929798Z (Reading database ... 45%
+2026-05-28T00:09:23.2941616Z (Reading database ... 50%
+2026-05-28T00:09:23.2956508Z (Reading database ... 55%
+2026-05-28T00:09:23.2970552Z (Reading database ... 60%
+2026-05-28T00:09:23.2980201Z (Reading database ... 65%
+2026-05-28T00:09:23.2985887Z (Reading database ... 70%
+2026-05-28T00:09:23.3014662Z (Reading database ... 75%
+2026-05-28T00:09:23.3104119Z (Reading database ... 80%
+2026-05-28T00:09:23.3123024Z (Reading database ... 85%
+2026-05-28T00:09:23.3140036Z (Reading database ... 90%
+2026-05-28T00:09:23.3417205Z (Reading database ... 95%
+2026-05-28T00:09:23.3418492Z (Reading database ... 100%
+2026-05-28T00:09:23.3419058Z (Reading database ... 135562 files and directories currently installed.)
+2026-05-28T00:09:23.3449632Z Preparing to unpack .../azure-cli_2.86.0-1~jammy_amd64.deb ...
+2026-05-28T00:09:23.3522899Z Unpacking azure-cli (2.86.0-1~jammy) ...
+2026-05-28T00:09:32.6352295Z Setting up azure-cli (2.86.0-1~jammy) ...
+2026-05-28T00:09:33.0365908Z 
+2026-05-28T00:09:33.0367624Z Pending kernel upgrade!
+2026-05-28T00:09:33.0367924Z 
+2026-05-28T00:09:33.0368217Z Running kernel version:
+2026-05-28T00:09:33.0368498Z   6.8.0-1044-azure
+2026-05-28T00:09:33.0368615Z 
+2026-05-28T00:09:33.0368863Z Diagnostics:
+2026-05-28T00:09:33.0369214Z   The currently running kernel version is not the expected kernel version 6.8.0-1052-azure.
+2026-05-28T00:09:33.0369390Z 
+2026-05-28T00:09:33.0369739Z Restarting the system to load the new kernel will not be handled automatically, so you should consider rebooting. [Return]
+2026-05-28T00:09:33.0369921Z 
+2026-05-28T00:09:33.0370191Z Services to be restarted:
+2026-05-28T00:09:33.0416639Z  systemctl restart chrony.service
+2026-05-28T00:09:33.0542993Z  systemctl restart irqbalance.service
+2026-05-28T00:09:33.0585577Z  systemctl restart multipathd.service
+2026-05-28T00:09:33.0664004Z  systemctl restart packagekit.service
+2026-05-28T00:09:33.0706690Z  systemctl restart polkit.service
+2026-05-28T00:09:33.0748523Z  systemctl restart rsyslog.service
+2026-05-28T00:09:33.0788627Z  systemctl restart serial-getty@ttyS0.service
+2026-05-28T00:09:33.0831109Z  systemctl restart systemd-journald.service
+2026-05-28T00:09:33.0909634Z  /etc/needrestart/restart.d/systemd-manager
+2026-05-28T00:09:33.0950832Z  systemctl restart systemd-networkd.service
+2026-05-28T00:09:33.0992380Z  systemctl restart systemd-resolved.service
+2026-05-28T00:09:33.1035222Z  systemctl restart systemd-udevd.service
+2026-05-28T00:09:33.1154055Z  systemctl restart uuidd.service
+2026-05-28T00:09:33.1195442Z  systemctl restart vsts.agent.iteyes\x2dito.Default.bastion01\x2dado.service
+2026-05-28T00:09:33.1236175Z  systemctl restart walinuxagent.service
+2026-05-28T00:09:33.1236350Z 
+2026-05-28T00:09:33.1236647Z Service restarts being deferred:
+2026-05-28T00:09:33.1236984Z  /etc/needrestart/restart.d/dbus.service
+2026-05-28T00:09:33.1237310Z  systemctl restart getty@tty1.service
+2026-05-28T00:09:33.1237892Z  systemctl restart networkd-dispatcher.service
+2026-05-28T00:09:33.1238260Z  systemctl restart systemd-logind.service
+2026-05-28T00:09:33.1238603Z  systemctl restart unattended-upgrades.service
+2026-05-28T00:09:33.1238936Z  systemctl restart user@1000.service
+2026-05-28T00:09:33.1239051Z 
+2026-05-28T00:09:33.1241444Z No containers need to be restarted.
+2026-05-28T00:09:33.1242139Z 
+2026-05-28T00:09:33.1242447Z No user sessions are running outdated binaries.
+2026-05-28T00:09:33.1242578Z 
+2026-05-28T00:09:33.1242865Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-05-28T00:09:36.8818809Z {
+2026-05-28T00:09:36.8819209Z   "azure-cli": "2.86.0",
+2026-05-28T00:09:36.8838850Z   "azure-cli-core": "2.86.0",
+2026-05-28T00:09:36.8839498Z   "azure-cli-telemetry": "1.1.0",
+2026-05-28T00:09:36.8840021Z   "extensions": {}
+2026-05-28T00:09:36.8840453Z }
+2026-05-28T00:09:36.9353850Z 
+2026-05-28T00:09:36.9432428Z ##[section]Finishing: Ensure Azure CLI for KV Sync

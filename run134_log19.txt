@@ -1,0 +1,16 @@
+2026-05-28T00:02:03.9655238Z ##[section]Starting: Run Ansible deploy playbook
+2026-05-28T00:02:03.9661209Z ==============================================================================
+2026-05-28T00:02:03.9661424Z Task         : Bash
+2026-05-28T00:02:03.9661548Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:02:03.9661703Z Version      : 3.268.1
+2026-05-28T00:02:03.9661835Z Author       : Microsoft Corporation
+2026-05-28T00:02:03.9661973Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:02:03.9662140Z ==============================================================================
+2026-05-28T00:02:04.0978761Z Generating script.
+2026-05-28T00:02:04.1008486Z ========================== Starting Command Output ===========================
+2026-05-28T00:02:04.1020813Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/c8ba9fbc-f501-494a-b1b6-3c5ea1175590.sh
+2026-05-28T00:02:04.4398129Z [WARNING]: Could not match supplied host pattern, ignoring: smartcontract
+2026-05-28T00:02:04.4399913Z ERROR! Specified hosts and/or --limit does not match any hosts
+2026-05-28T00:02:04.4733366Z 
+2026-05-28T00:02:04.4750545Z ##[error]Bash exited with code '1'.
+2026-05-28T00:02:04.4780188Z ##[section]Finishing: Run Ansible deploy playbook

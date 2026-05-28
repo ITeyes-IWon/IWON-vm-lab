@@ -1,0 +1,74 @@
+2026-05-28T00:21:48.9424792Z ##[section]Starting: Run Ansible deploy playbook
+2026-05-28T00:21:48.9431242Z ==============================================================================
+2026-05-28T00:21:48.9431455Z Task         : Bash
+2026-05-28T00:21:48.9431591Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:21:48.9431765Z Version      : 3.268.1
+2026-05-28T00:21:48.9431903Z Author       : Microsoft Corporation
+2026-05-28T00:21:48.9432054Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:21:48.9432243Z ==============================================================================
+2026-05-28T00:21:49.0988608Z Generating script.
+2026-05-28T00:21:49.1031520Z ========================== Starting Command Output ===========================
+2026-05-28T00:21:49.1034467Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/4ffdcbb4-2d60-460a-80b7-fb5bb9043de4.sh
+2026-05-28T00:21:49.5651665Z 
+2026-05-28T00:21:49.5653351Z PLAY [GitOps wrapper deploy playbook] ******************************************
+2026-05-28T00:21:49.5737358Z 
+2026-05-28T00:21:49.5739379Z TASK [Gathering Facts] *********************************************************
+2026-05-28T00:21:50.7986505Z ok: [smartcontract01]
+2026-05-28T00:21:50.8040188Z 
+2026-05-28T00:21:50.8041794Z TASK [Validate required variables] *********************************************
+2026-05-28T00:21:50.8240553Z ok: [smartcontract01] => {
+2026-05-28T00:21:50.8246036Z     "changed": false,
+2026-05-28T00:21:50.8246368Z     "msg": "All assertions passed"
+2026-05-28T00:21:50.8246645Z }
+2026-05-28T00:21:50.8335462Z 
+2026-05-28T00:21:50.8339247Z TASK [Apply common role] *******************************************************
+2026-05-28T00:21:50.8542685Z 
+2026-05-28T00:21:50.8544597Z TASK [common : Install common packages] ****************************************
+2026-05-28T00:21:52.8402026Z ok: [smartcontract01]
+2026-05-28T00:21:52.8444363Z 
+2026-05-28T00:21:52.8445239Z TASK [common : Ensure shared directories exist] ********************************
+2026-05-28T00:21:53.1726874Z ok: [smartcontract01] => (item={'path': '/opt/vm-lab', 'mode': '0755'})
+2026-05-28T00:21:53.3736108Z ok: [smartcontract01] => (item={'path': '/opt/scripts', 'mode': '0755'})
+2026-05-28T00:21:53.5762396Z ok: [smartcontract01] => (item={'path': '/var/log/iwon', 'mode': '0755'})
+2026-05-28T00:21:53.5808574Z 
+2026-05-28T00:21:53.5809300Z TASK [Include deploy target tasks] *********************************************
+2026-05-28T00:21:53.6025496Z included: /opt/ado-agent/_work/2/s/gitops/ansible/tasks/deploy-smartcontract.yml for smartcontract01
+2026-05-28T00:21:53.6078774Z 
+2026-05-28T00:21:53.6080421Z TASK [Ensure target directory exists] ******************************************
+2026-05-28T00:21:53.8181599Z ok: [smartcontract01]
+2026-05-28T00:21:53.8226670Z 
+2026-05-28T00:21:53.8227807Z TASK [Unzip smartcontract artifact] ********************************************
+2026-05-28T00:21:54.5410958Z ok: [smartcontract01]
+2026-05-28T00:21:54.5461181Z 
+2026-05-28T00:21:54.5462332Z TASK [Ensure smartcontract directory ownership after unzip] ********************
+2026-05-28T00:21:55.8203910Z changed: [smartcontract01]
+2026-05-28T00:21:55.8251040Z 
+2026-05-28T00:21:55.8252207Z TASK [Copy initial .env to VM] *************************************************
+2026-05-28T00:21:56.2963053Z ok: [smartcontract01]
+2026-05-28T00:21:56.3016131Z 
+2026-05-28T00:21:56.3017204Z TASK [Install Node.js (v22.x) and npm] *****************************************
+2026-05-28T00:21:56.5900905Z ok: [smartcontract01]
+2026-05-28T00:21:56.5952084Z 
+2026-05-28T00:21:56.5952704Z TASK [Run npm ci] **************************************************************
+2026-05-28T00:22:07.4203062Z changed: [smartcontract01]
+2026-05-28T00:22:07.4248598Z 
+2026-05-28T00:22:07.4251251Z TASK [Execute SmartContract Operation (verify)] ********************************
+2026-05-28T00:22:07.4395630Z skipping: [smartcontract01]
+2026-05-28T00:22:07.4444330Z 
+2026-05-28T00:22:07.4445060Z TASK [Execute SmartContract Operation (rotate-and-sync)] ***********************
+2026-05-28T00:22:07.4594653Z skipping: [smartcontract01]
+2026-05-28T00:22:07.4640206Z 
+2026-05-28T00:22:07.4642292Z TASK [Execute SmartContract Operation (deploy-and-sync)] ***********************
+2026-05-28T00:22:13.2630592Z changed: [smartcontract01]
+2026-05-28T00:22:13.2678938Z 
+2026-05-28T00:22:13.2680503Z TASK [Fetch modified .env back to ADO Agent] ***********************************
+2026-05-28T00:22:13.5643190Z changed: [smartcontract01]
+2026-05-28T00:22:13.5686623Z 
+2026-05-28T00:22:13.5687363Z TASK [Remove .env from VM for security] ****************************************
+2026-05-28T00:22:13.7818622Z changed: [smartcontract01]
+2026-05-28T00:22:13.7913777Z 
+2026-05-28T00:22:13.7914539Z PLAY RECAP *********************************************************************
+2026-05-28T00:22:13.7915029Z smartcontract01            : ok=***   changed=5    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2026-05-28T00:22:13.7915253Z 
+2026-05-28T00:22:13.8556561Z 
+2026-05-28T00:22:13.8598276Z ##[section]Finishing: Run Ansible deploy playbook

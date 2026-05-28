@@ -1,0 +1,26 @@
+2026-05-28T00:04:55.5047875Z ##[section]Starting: Sync Key Vault (sync_keyvault.js) via ADO Service Connection
+2026-05-28T00:04:55.5053514Z ==============================================================================
+2026-05-28T00:04:55.5053639Z Task         : Azure CLI
+2026-05-28T00:04:55.5053715Z Description  : Run Azure CLI commands against an Azure subscription in a PowerShell Core/Shell script when running on Linux agent or PowerShell/PowerShell Core/Batch script when running on Windows agent.
+2026-05-28T00:04:55.5053874Z Version      : 2.274.1
+2026-05-28T00:04:55.5053947Z Author       : Microsoft Corporation
+2026-05-28T00:04:55.5054018Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/deploy/azure-cli
+2026-05-28T00:04:55.5054118Z ==============================================================================
+2026-05-28T00:04:55.7358600Z ##[error]Azure CLI 2.x is not installed on this machine.
+2026-05-28T00:04:55.7481554Z ##[error]Script failed with error: Error: Unable to locate executable file: 'az'. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also check the file mode to verify the file is executable.
+    at Object._which (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/internal.js:368:23)
+    at new ToolRunner (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/toolrunner.js:33:29)
+    at Object.tool (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/task.js:1688:***)
+    at Object.execSync (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/task.js:1669:19)
+    at azureclitask.<anonymous> (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/azureclitask.js:64:42)
+    at Generator.next (<anonymous>)
+    at fulfilled (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/azureclitask.js:5:58)
+2026-05-28T00:04:55.7489052Z ##[error]Script failed with error: Error: Unable to locate executable file: 'az'. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also check the file mode to verify the file is executable.
+    at Object._which (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/internal.js:368:23)
+    at new ToolRunner (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/toolrunner.js:33:29)
+    at Object.tool (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/task.js:1688:***)
+    at Object.execSync (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/task.js:1669:19)
+    at azureclitask.<anonymous> (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/azureclitask.js:64:42)
+    at Generator.next (<anonymous>)
+    at fulfilled (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/azureclitask.js:5:58)
+2026-05-28T00:04:55.7530237Z ##[section]Finishing: Sync Key Vault (sync_keyvault.js) via ADO Service Connection

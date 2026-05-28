@@ -1,0 +1,111 @@
+2026-05-28T00:22:14.4790867Z ##[section]Starting: Sync Key Vault (sync_keyvault.js) via ADO Service Connection
+2026-05-28T00:22:14.4798109Z ==============================================================================
+2026-05-28T00:22:14.4798328Z Task         : Azure CLI
+2026-05-28T00:22:14.4798442Z Description  : Run Azure CLI commands against an Azure subscription in a PowerShell Core/Shell script when running on Linux agent or PowerShell/PowerShell Core/Batch script when running on Windows agent.
+2026-05-28T00:22:14.4798708Z Version      : 2.274.1
+2026-05-28T00:22:14.4798842Z Author       : Microsoft Corporation
+2026-05-28T00:22:14.4798989Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/deploy/azure-cli
+2026-05-28T00:22:14.4799344Z ==============================================================================
+2026-05-28T00:22:14.7334309Z [command]/usr/bin/az version
+2026-05-28T00:22:14.9811882Z {
+2026-05-28T00:22:14.9812240Z   "azure-cli": "2.86.0",
+2026-05-28T00:22:14.9812612Z   "azure-cli-core": "2.86.0",
+2026-05-28T00:22:14.9813003Z   "azure-cli-telemetry": "1.1.0",
+2026-05-28T00:22:14.9813317Z   "extensions": {}
+2026-05-28T00:22:14.9813587Z }
+2026-05-28T00:22:14.9853811Z Setting AZURE_CONFIG_DIR env variable to: /opt/ado-agent/_work/_temp/.azclitask
+2026-05-28T00:22:14.9890512Z Setting active cloud to: AzureCloud
+2026-05-28T00:22:14.9896033Z [command]/usr/bin/az cloud set -n AzureCloud
+2026-05-28T00:22:17.1705185Z [command]/usr/bin/az login --service-principal -u *** --password=*** --tenant f1a1af5e-8ee6-47a5-aadc-fd3c6f31dfe5 --allow-no-subscriptions
+2026-05-28T00:22:18.0398938Z [
+2026-05-28T00:22:18.0400320Z   {
+2026-05-28T00:22:18.0418664Z     "cloudName": "AzureCloud",
+2026-05-28T00:22:18.0419381Z     "homeTenantId": "f1a1af5e-8ee6-47a5-aadc-fd3c6f31dfe5",
+2026-05-28T00:22:18.0420161Z     "id": "51be5***3-cf60-4f1f-8b9f-fb4b31daa579",
+2026-05-28T00:22:18.0420668Z     "isDefault": true,
+2026-05-28T00:22:18.0421123Z     "managedByTenants": [],
+2026-05-28T00:22:18.0589789Z     "name": "아이티아이즈-sub-gtm-msp-ktpartners-17",
+2026-05-28T00:22:18.0590564Z     "state": "Enabled",
+2026-05-28T00:22:18.0590939Z     "tenantId": "f1a1af5e-8ee6-47a5-aadc-fd3c6f31dfe5",
+2026-05-28T00:22:18.0591291Z     "user": {
+2026-05-28T00:22:18.0591721Z       "name": "***",
+2026-05-28T00:22:18.0592058Z       "type": "servicePrincipal"
+2026-05-28T00:22:18.0592363Z     }
+2026-05-28T00:22:18.0592635Z   }
+2026-05-28T00:22:18.0592910Z ]
+2026-05-28T00:22:18.0597511Z [command]/usr/bin/az account set --subscription 51be5***3-cf60-4f1f-8b9f-fb4b31daa579
+2026-05-28T00:22:18.3660505Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/azureclitaskscript1779927734727.sh
+2026-05-28T00:22:18.3777196Z Extracting smartcontract source for KV Sync...
+2026-05-28T00:22:18.3852124Z Moving fetched .env from VM to local directory...
+2026-05-28T00:22:18.3858998Z Running npm ci...
+2026-05-28T00:22:21.0340640Z npm warn deprecated lodash.isequal@4.5.0: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
+2026-05-28T00:22:21.3285087Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-05-28T00:22:24.0394418Z npm warn deprecated glob@7.1.7: Glob versions prior to v9 are no longer supported
+2026-05-28T00:22:24.1200345Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2026-05-28T00:22:24.1631054Z npm warn deprecated glob@5.0.15: Glob versions prior to v9 are no longer supported
+2026-05-28T00:22:24.1638491Z npm warn deprecated glob@8.1.0: Glob versions prior to v9 are no longer supported
+2026-05-28T00:22:24.2431662Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2026-05-28T00:22:32.7599627Z 
+2026-05-28T00:22:32.7601380Z added 708 packages, and audited 709 packages in ***s
+2026-05-28T00:22:32.7601576Z 
+2026-05-28T00:22:32.7601927Z 121 packages are looking for funding
+2026-05-28T00:22:32.7602820Z   run `npm fund` for details
+2026-05-28T00:22:32.8552191Z 
+2026-05-28T00:22:32.8552940Z 60 vulnerabilities (15 low, 28 moderate, 16 high, 1 critical)
+2026-05-28T00:22:32.8553123Z 
+2026-05-28T00:22:32.8553432Z To address issues that do not require attention, run:
+2026-05-28T00:22:32.8553779Z   npm audit fix
+2026-05-28T00:22:32.8553897Z 
+2026-05-28T00:22:32.8554181Z To address all issues possible (including breaking changes), run:
+2026-05-28T00:22:32.8554504Z   npm audit fix --force
+2026-05-28T00:22:32.8554640Z 
+2026-05-28T00:22:32.8554943Z Some issues need review, and may require choosing
+2026-05-28T00:22:32.8555271Z a different dependency.
+2026-05-28T00:22:32.8555376Z 
+2026-05-28T00:22:32.8555660Z Run `npm audit` for details.
+2026-05-28T00:22:32.9005163Z Running sync_keyvault.js...
+2026-05-28T00:22:32.9325687Z Azure Key Vault 동기화 시작: iwonsvckvkrc001
+2026-05-28T00:22:34.5206374Z /opt/ado-agent/_work/2/s/sc_local/scripts/sync_keyvault.js:98
+2026-05-28T00:22:34.5206799Z     throw new Error(
+2026-05-28T00:22:34.5207104Z     ^
+2026-05-28T00:22:34.5207191Z 
+2026-05-28T00:22:34.5208077Z Error: az keyvault secret set 실패 [IWON-COMPANY-PRIVATE-KEY]: ERROR: (Forbidden) Caller is not authorized to perform action on resource.
+2026-05-28T00:22:34.5208545Z If role assignments, deny assignments or role definitions were changed recently, please observe propagation time.
+2026-05-28T00:22:34.5209116Z Caller: appid=***;oid=86cbf4bc-58a1-4e0a-8401-aa515e08687a;iss=https://sts.windows.net/f1a1af5e-8ee6-47a5-aadc-fd3c6f31dfe5/
+2026-05-28T00:22:34.5209513Z Action: 'Microsoft.KeyVault/vaults/secrets/setSecret/action'
+2026-05-28T00:22:34.5209966Z Resource: '/subscriptions/51be5***3-cf60-4f1f-8b9f-fb4b31daa579/resourcegroups/iwon-svc-rg/providers/microsoft.keyvault/vaults/iwonsvckvkrc001/secrets/iwon-company-private-key'
+2026-05-28T00:22:34.5210392Z Assignment: (not found)
+2026-05-28T00:22:34.5210676Z DenyAssignmentId: null
+2026-05-28T00:22:34.5210986Z DecisionReason: null 
+2026-05-28T00:22:34.5211317Z Vault: iwonsvckvkrc001;location=koreacentral
+2026-05-28T00:22:34.5211493Z 
+2026-05-28T00:22:34.5211751Z Code: Forbidden
+2026-05-28T00:22:34.5212106Z Message: Caller is not authorized to perform action on resource.
+2026-05-28T00:22:34.5212554Z If role assignments, deny assignments or role definitions were changed recently, please observe propagation time.
+2026-05-28T00:22:34.5213160Z Caller: appid=***;oid=86cbf4bc-58a1-4e0a-8401-aa515e08687a;iss=https://sts.windows.net/f1a1af5e-8ee6-47a5-aadc-fd3c6f31dfe5/
+2026-05-28T00:22:34.5213571Z Action: 'Microsoft.KeyVault/vaults/secrets/setSecret/action'
+2026-05-28T00:22:34.5214075Z Resource: '/subscriptions/51be5***3-cf60-4f1f-8b9f-fb4b31daa579/resourcegroups/iwon-svc-rg/providers/microsoft.keyvault/vaults/iwonsvckvkrc001/secrets/iwon-company-private-key'
+2026-05-28T00:22:34.5214508Z Assignment: (not found)
+2026-05-28T00:22:34.5214792Z DenyAssignmentId: null
+2026-05-28T00:22:34.5215080Z DecisionReason: null 
+2026-05-28T00:22:34.5215399Z Vault: iwonsvckvkrc001;location=koreacentral
+2026-05-28T00:22:34.5215534Z 
+2026-05-28T00:22:34.5215800Z Inner error: {
+2026-05-28T00:22:34.5216079Z     "code": "ForbiddenByRbac"
+2026-05-28T00:22:34.5216679Z }
+2026-05-28T00:22:34.5217017Z     at azSetSecret (/opt/ado-agent/_work/2/s/sc_local/scripts/sync_keyvault.js:98:11)
+2026-05-28T00:22:34.5218354Z     at main (/opt/ado-agent/_work/2/s/sc_local/scripts/sync_keyvault.js:131:5)
+2026-05-28T00:22:34.5218846Z     at Object.<anonymous> (/opt/ado-agent/_work/2/s/sc_local/scripts/sync_keyvault.js:***5:1)
+2026-05-28T00:22:34.5219324Z     at Module._compile (node:internal/modules/cjs/loader:1781:***)
+2026-05-28T00:22:34.5219786Z     at Object..js (node:internal/modules/cjs/loader:1913:10)
+2026-05-28T00:22:34.5220229Z     at Module.load (node:internal/modules/cjs/loader:1505:32)
+2026-05-28T00:22:34.5220691Z     at Function._load (node:internal/modules/cjs/loader:1309:12)
+2026-05-28T00:22:34.5221142Z     at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+2026-05-28T00:22:34.5221646Z     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+2026-05-28T00:22:34.5222380Z     at node:internal/main/run_main_module:36:49
+2026-05-28T00:22:34.5222707Z 
+2026-05-28T00:22:34.5223018Z Node.js v22.22.3
+2026-05-28T00:22:34.5245592Z 
+2026-05-28T00:22:34.5266342Z ##[error]Script failed with exit code: 1
+2026-05-28T00:22:34.5276240Z [command]/usr/bin/az account clear
+2026-05-28T00:22:35.1720824Z ##[section]Finishing: Sync Key Vault (sync_keyvault.js) via ADO Service Connection

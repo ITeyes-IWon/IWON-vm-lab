@@ -1,0 +1,93 @@
+2026-05-28T00:04:08.8026559Z ##[section]Starting: Run Ansible deploy playbook
+2026-05-28T00:04:08.8031039Z ==============================================================================
+2026-05-28T00:04:08.8031267Z Task         : Bash
+2026-05-28T00:04:08.8031339Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:04:08.8031420Z Version      : 3.268.1
+2026-05-28T00:04:08.8031491Z Author       : Microsoft Corporation
+2026-05-28T00:04:08.8031575Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:04:08.8031677Z ==============================================================================
+2026-05-28T00:04:08.9248662Z Generating script.
+2026-05-28T00:04:08.9299601Z ========================== Starting Command Output ===========================
+2026-05-28T00:04:08.9302506Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/6215ea00-ab1e-443d-8a8e-0f769a3d7f95.sh
+2026-05-28T00:04:09.3566705Z 
+2026-05-28T00:04:09.3572266Z PLAY [GitOps wrapper deploy playbook] ******************************************
+2026-05-28T00:04:09.3656169Z 
+2026-05-28T00:04:09.3657014Z TASK [Gathering Facts] *********************************************************
+2026-05-28T00:04:10.5742388Z ok: [was01]
+2026-05-28T00:04:10.5793885Z 
+2026-05-28T00:04:10.5968639Z TASK [Validate required variables] *********************************************
+2026-05-28T00:04:10.6074373Z ok: [was01] => {
+2026-05-28T00:04:10.6075561Z     "changed": false,
+2026-05-28T00:04:10.6076542Z     "msg": "All assertions passed"
+2026-05-28T00:04:10.6077470Z }
+2026-05-28T00:04:10.6180101Z 
+2026-05-28T00:04:10.6182123Z TASK [Apply common role] *******************************************************
+2026-05-28T00:04:10.6382552Z 
+2026-05-28T00:04:10.6387111Z TASK [common : Install common packages] ****************************************
+2026-05-28T00:04:16.5211962Z ok: [was01]
+2026-05-28T00:04:16.5260870Z 
+2026-05-28T00:04:16.5261859Z TASK [common : Ensure shared directories exist] ********************************
+2026-05-28T00:04:16.8428261Z ok: [was01] => (item={'path': '/opt/vm-lab', 'mode': '0755'})
+2026-05-28T00:04:17.0463990Z ok: [was01] => (item={'path': '/opt/scripts', 'mode': '0755'})
+2026-05-28T00:04:17.2501395Z ok: [was01] => (item={'path': '/var/log/iwon', 'mode': '0755'})
+2026-05-28T00:04:17.2549572Z 
+2026-05-28T00:04:17.2550558Z TASK [Include deploy target tasks] *********************************************
+2026-05-28T00:04:17.2726061Z included: /opt/ado-agent/_work/2/s/gitops/ansible/tasks/deploy-was.yml for was01
+2026-05-28T00:04:17.2777571Z 
+2026-05-28T00:04:17.2780123Z TASK [Deploy WAS artifact with java_service role] ******************************
+2026-05-28T00:04:17.3061538Z 
+2026-05-28T00:04:17.3063041Z TASK [java_service : Install Java runtime] *************************************
+2026-05-28T00:04:19.0732030Z ok: [was01]
+2026-05-28T00:04:19.0774396Z 
+2026-05-28T00:04:19.0777200Z TASK [java_service : Ensure application directory exists] **********************
+2026-05-28T00:04:19.2839217Z ok: [was01]
+2026-05-28T00:04:19.2888878Z 
+2026-05-28T00:04:19.2890036Z TASK [java_service : Ensure JAR backup directory exists] ***********************
+2026-05-28T00:04:19.5178058Z ok: [was01]
+2026-05-28T00:04:19.5223809Z 
+2026-05-28T00:04:19.5227357Z TASK [java_service : Check current deployed JAR] *******************************
+2026-05-28T00:04:19.8971682Z ok: [was01]
+2026-05-28T00:04:19.9027398Z 
+2026-05-28T00:04:19.9028882Z TASK [java_service : Backup current JAR before deploy] *************************
+2026-05-28T00:04:20.6601987Z changed: [was01]
+2026-05-28T00:04:20.6647891Z 
+2026-05-28T00:04:20.6649388Z TASK [java_service : Update previous-version shortcut] *************************
+2026-05-28T00:04:21.1806723Z ok: [was01]
+2026-05-28T00:04:21.1854811Z 
+2026-05-28T00:04:21.1857570Z TASK [java_service : Upload service JAR] ***************************************
+2026-05-28T00:04:25.7977909Z changed: [was01]
+2026-05-28T00:04:25.8018470Z 
+2026-05-28T00:04:25.8019649Z TASK [java_service : Upload JAR patch helper] **********************************
+2026-05-28T00:04:25.8162549Z skipping: [was01]
+2026-05-28T00:04:25.8208974Z 
+2026-05-28T00:04:25.8210207Z TASK [java_service : Upload JAR XML patch helper] ******************************
+2026-05-28T00:04:26.2962410Z ok: [was01]
+2026-05-28T00:04:26.2998158Z 
+2026-05-28T00:04:26.2999728Z TASK [java_service : Patch JAR XML mappers gpcl_ -> GPCL_ (case normalization)] ***
+2026-05-28T00:04:26.9509572Z changed: [was01]
+2026-05-28T00:04:26.9551418Z 
+2026-05-28T00:04:26.9552204Z TASK [java_service : Patch JAR UTF-8 constants for multiple classes] ***********
+2026-05-28T00:04:26.9710533Z 
+2026-05-28T00:04:26.9711418Z TASK [java_service : Patch JAR UTF-8 constants when configured] ****************
+2026-05-28T00:04:26.9849968Z skipping: [was01]
+2026-05-28T00:04:26.9904028Z 
+2026-05-28T00:04:26.9905656Z TASK [java_service : Create service start script] ******************************
+2026-05-28T00:04:27.3901439Z ok: [was01]
+2026-05-28T00:04:27.3950009Z 
+2026-05-28T00:04:27.3951702Z TASK [java_service : Create rollback helper script in app directory] ***********
+2026-05-28T00:04:27.7682055Z ok: [was01]
+2026-05-28T00:04:27.7730829Z 
+2026-05-28T00:04:27.7731441Z TASK [java_service : Create systemd unit] **************************************
+2026-05-28T00:04:28.1619329Z ok: [was01]
+2026-05-28T00:04:28.1670441Z 
+2026-05-28T00:04:28.1673497Z RUNNING HANDLER [java_service : Restart java service] **************************
+2026-05-28T00:04:28.9872691Z changed: [was01]
+2026-05-28T00:04:28.9922446Z 
+2026-05-28T00:04:28.9923071Z TASK [java_service : Ensure java service is enabled] ***************************
+2026-05-28T00:04:29.4546529Z ok: [was01]
+2026-05-28T00:04:29.4641468Z 
+2026-05-28T00:04:29.4644765Z PLAY RECAP *********************************************************************
+2026-05-28T00:04:29.4645978Z was01                      : ok=19   changed=4    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+2026-05-28T00:04:29.4646142Z 
+2026-05-28T00:04:29.5282951Z 
+2026-05-28T00:04:29.5329572Z ##[section]Finishing: Run Ansible deploy playbook

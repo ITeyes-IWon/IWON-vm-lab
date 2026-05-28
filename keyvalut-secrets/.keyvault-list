@@ -1,0 +1,68 @@
+# 지갑 주소 암호화 키
+IWON-WALLET-AES-KEY-BASE64=YBZKoOzR6eRW/2ZBfcBxmiN5bDhzXptxHnue69U20+0=
+
+# API Key 헤더 명칭
+IWON-API-KEY-HEADER=X-IWON-API-KEY
+
+# Sepolia 네트워크 ID
+IWON-CHAIN-ID=11155111
+
+# RPC 접속 URL
+IWON-RPC-URL=wss://eth-sepolia.g.alchemy.com/v2/OEZ8vjlRi-Qf4KcdiLIDo
+
+# 토큰 컨트랙트 주소
+IWON-TOKEN-ADDRESS=0xf6f411F7B59591b22D22a0681E0f8CE6C746220c
+
+# 토큰 소수점 자리수
+IWON-TOKEN-DECIMALS=18
+
+# 관리자 개인키 (보안 주의)
+IWON-ADMIN-PRIVATE-KEY=0x244fb223130ef3ac6d53be4f87dff9daff23dcdca18a024387ee8b26e8361c0c
+
+# 운영용 개인키 (보안 주의)
+IWON-COMPANY-PRIVATE-KEY=0x7653b6146e102004cd8813a06341a7c507e1386be5c93fa00a39f90e6d17aab9
+
+# 통합: 메인 및 Maria120 DB URL
+SPRING-DATASOURCE-URL=jdbc:mariadb://10.0.2.50:3306/appdb?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8
+
+# 통합: DB 접속 공용 계정
+SPRING-DATASOURCE-USERNAME=appuser
+
+# 통합: DB 접속 공용 암호
+SPRING-DATASOURCE-PASSWORD=appuserpassword123!
+
+# 통합: Wallet/Token API 공용 주소
+IWON-WALLET-API-BASE-URL=http://10.0.2.40:8080
+
+# 토큰 API 기본 경로
+TOKEN-API-BASE-PATH=/api/token
+
+# Kafka 브로커 주소
+IWON-KAFKA-BOOTSTRAP-SERVERS=10.0.2.60:9092
+
+# 통합: 법인 지갑/Treasury 사용자 ID
+IWON-COMPANY-WALLET-USER-ID=ITEyes
+
+# 애플리케이션 컨텍스트 경로
+SERVER-SERVLET-CONTEXT-PATH=/app
+
+# 세션 만료 시간
+SPRING-SESSION-TIMEOUT=30m
+
+# 로그 파일 저장 경로
+LOGGING-FILE-NAME=logs/app.log
+
+# 로그 개별 파일 최대 크기
+LOG-MAX-FILE-SIZE=50MB
+
+# 전체 로그 용량 제한
+LOG-TOTAL-SIZE-CAP=2GB
+
+# 로그 보관 기간 (일 단위)
+LOG-MAX-HISTORY=14
+
+# SQL 쿼리 로깅 레벨
+IWON-P6SPY-LOG-LEVEL=INFO
+
+# API 인증 활성화 여부
+IWON-API-AUTH-ENABLED=FALSE

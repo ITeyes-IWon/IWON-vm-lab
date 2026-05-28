@@ -1,0 +1,5 @@
+2026-05-28T00:18:51.5848217Z Skipping step due to condition evaluation.
+Evaluating: and(succeeded(), eq('smartcontract', 'smartcontract'), ne('deploy-and-sync', 'verify'))
+Expanded: and(False, eq('smartcontract', 'smartcontract'), ne('deploy-and-sync', 'verify'))
+Result: False
+

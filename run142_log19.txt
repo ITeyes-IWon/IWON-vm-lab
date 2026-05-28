@@ -1,0 +1,70 @@
+2026-05-28T00:14:09.7759796Z ##[section]Starting: Run Ansible deploy playbook
+2026-05-28T00:14:09.7765792Z ==============================================================================
+2026-05-28T00:14:09.7766000Z Task         : Bash
+2026-05-28T00:14:09.7766101Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:14:09.7766234Z Version      : 3.268.1
+2026-05-28T00:14:09.7766329Z Author       : Microsoft Corporation
+2026-05-28T00:14:09.7766449Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:14:09.7766595Z ==============================================================================
+2026-05-28T00:14:09.9043477Z Generating script.
+2026-05-28T00:14:09.9055650Z ========================== Starting Command Output ===========================
+2026-05-28T00:14:09.9261590Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/1ae264ab-ecfd-495f-8eb2-0cc2c6f24c11.sh
+2026-05-28T00:14:10.4015183Z 
+2026-05-28T00:14:10.4017530Z PLAY [GitOps wrapper deploy playbook] ******************************************
+2026-05-28T00:14:10.4092614Z 
+2026-05-28T00:14:10.4093830Z TASK [Gathering Facts] *********************************************************
+2026-05-28T00:14:11.8625931Z ok: [smartcontract01]
+2026-05-28T00:14:11.8815382Z 
+2026-05-28T00:14:11.8819765Z TASK [Validate required variables] *********************************************
+2026-05-28T00:14:11.9012969Z ok: [smartcontract01] => {
+2026-05-28T00:14:11.9013327Z     "changed": false,
+2026-05-28T00:14:11.9013618Z     "msg": "All assertions passed"
+2026-05-28T00:14:11.9013885Z }
+2026-05-28T00:14:11.9096954Z 
+2026-05-28T00:14:11.9098182Z TASK [Apply common role] *******************************************************
+2026-05-28T00:14:11.9291945Z 
+2026-05-28T00:14:11.9296350Z TASK [common : Install common packages] ****************************************
+2026-05-28T00:14:16.4761037Z ok: [smartcontract01]
+2026-05-28T00:14:16.4800906Z 
+2026-05-28T00:14:16.4804066Z TASK [common : Ensure shared directories exist] ********************************
+2026-05-28T00:14:16.7962390Z ok: [smartcontract01] => (item={'path': '/opt/vm-lab', 'mode': '0755'})
+2026-05-28T00:14:17.0043509Z ok: [smartcontract01] => (item={'path': '/opt/scripts', 'mode': '0755'})
+2026-05-28T00:14:17.2230852Z ok: [smartcontract01] => (item={'path': '/var/log/iwon', 'mode': '0755'})
+2026-05-28T00:14:17.2274124Z 
+2026-05-28T00:14:17.2276490Z TASK [Include deploy target tasks] *********************************************
+2026-05-28T00:14:17.2474718Z included: /opt/ado-agent/_work/2/s/gitops/ansible/tasks/deploy-smartcontract.yml for smartcontract01
+2026-05-28T00:14:17.2527811Z 
+2026-05-28T00:14:17.2529037Z TASK [Ensure target directory exists] ******************************************
+2026-05-28T00:14:17.4681053Z changed: [smartcontract01]
+2026-05-28T00:14:17.4735326Z 
+2026-05-28T00:14:17.4736601Z TASK [Unzip smartcontract artifact] ********************************************
+2026-05-28T00:14:18.2210610Z changed: [smartcontract01]
+2026-05-28T00:14:18.2257105Z 
+2026-05-28T00:14:18.2257933Z TASK [Copy initial .env to VM] *************************************************
+2026-05-28T00:14:18.7382340Z changed: [smartcontract01]
+2026-05-28T00:14:18.7424172Z 
+2026-05-28T00:14:18.7424988Z TASK [Install Node.js (v22.x) and npm] *****************************************
+2026-05-28T00:14:33.0663913Z [WARNING]: Consider using the get_url or uri module rather than running 'curl'.
+2026-05-28T00:14:33.0667249Z If you need to use command because get_url or uri is insufficient you can add
+2026-05-28T00:14:33.0667611Z 'warn: false' to this command task or set 'command_warnings=False' in
+2026-05-28T00:14:33.0668121Z ansible.cfg to get rid of this message.
+2026-05-28T00:14:33.0668422Z changed: [smartcontract01]
+2026-05-28T00:14:33.0716337Z 
+2026-05-28T00:14:33.0718458Z TASK [Run npm ci] **************************************************************
+2026-05-28T00:14:47.5725680Z changed: [smartcontract01]
+2026-05-28T00:14:47.5776355Z 
+2026-05-28T00:14:47.5777482Z TASK [Execute SmartContract Operation (verify)] ********************************
+2026-05-28T00:14:47.5919484Z skipping: [smartcontract01]
+2026-05-28T00:14:47.5968918Z 
+2026-05-28T00:14:47.5970127Z TASK [Execute SmartContract Operation (rotate-and-sync)] ***********************
+2026-05-28T00:14:47.6115572Z skipping: [smartcontract01]
+2026-05-28T00:14:47.6163534Z 
+2026-05-28T00:14:47.6165578Z TASK [Execute SmartContract Operation (deploy-and-sync)] ***********************
+2026-05-28T00:14:53.3290368Z fatal: [smartcontract01]: FAILED! => {"changed": true, "cmd": ["npx", "hardhat", "run", "scripts/upgrade_proxy.js", "--network", "sepolia"], "delta": "0:00:05.474525", "end": "2026-05-28 09:***:53.288503", "msg": "non-zero return code", "rc": 1, "start": "2026-05-28 09:***:47.813978", "stderr": "TypeError: Invalid URL\n    at new URL (node:internal/url:8***:25)\n    at new HttpProvider (/opt***s/smartcontract/node_modules/hardhat/src/internal/core/providers/http.ts:60:17)\n    at createProvider (/opt***s/smartcontract/node_modules/hardhat/src/internal/core/providers/construction.ts:128:23)\n    at LazyInitializationProviderAdapter._providerFactory (/opt***s/smartcontract/node_modules/hardhat/src/internal/core/runtime-environment.ts:100:28)\n    at LazyInitializationProviderAdapter.init (/opt***s/smartcontract/node_modules/hardhat/src/internal/core/providers/lazy-initialization.ts:40:42)\n    at LazyInitializationProviderAdapter._getOrInitProvider (/opt***s/smartcontract/node_modules/hardhat/src/internal/core/providers/lazy-initialization.ts:173:34)\n    at LazyInitializationProviderAdapter.send (/opt***s/smartcontract/node_modules/hardhat/src/internal/core/providers/lazy-initialization.ts:68:33)\n    at HardhatEthersProvider.send (/opt***s/smartcontract/node_modules/@nomicfoundation/hardhat-ethers/src/internal/hardhat-ethers-provider.ts:105:34)\n    at getSigners (/opt***s/smartcontract/node_modules/@nomicfoundation/hardhat-ethers/src/internal/helpers.ts:46:42)\n    at Proxy.getSigners (/opt***s/smartcontract/node_modules/@nomicfoundation/hardhat-ethers/src/internal/index.ts:37:35) {\n  code: 'ERR_INVALID_URL',\n  input: '$(IWON-SEPOLIA-RPC-URL)'\n}", "stderr_lines": ["TypeError: Invalid URL", "    at new URL (node:internal/url:8***:25)", "    at new HttpProvider (/opt***s/smartcontract/node_modules/hardhat/src/internal/core/providers/http.ts:60:17)", "    at createProvider (/opt***s/smartcontract/node_modules/hardhat/src/internal/core/providers/construction.ts:128:23)", "    at LazyInitializationProviderAdapter._providerFactory (/opt***s/smartcontract/node_modules/hardhat/src/internal/core/runtime-environment.ts:100:28)", "    at LazyInitializationProviderAdapter.init (/opt***s/smartcontract/node_modules/hardhat/src/internal/core/providers/lazy-initialization.ts:40:42)", "    at LazyInitializationProviderAdapter._getOrInitProvider (/opt***s/smartcontract/node_modules/hardhat/src/internal/core/providers/lazy-initialization.ts:173:34)", "    at LazyInitializationProviderAdapter.send (/opt***s/smartcontract/node_modules/hardhat/src/internal/core/providers/lazy-initialization.ts:68:33)", "    at HardhatEthersProvider.send (/opt***s/smartcontract/node_modules/@nomicfoundation/hardhat-ethers/src/internal/hardhat-ethers-provider.ts:105:34)", "    at getSigners (/opt***s/smartcontract/node_modules/@nomicfoundation/hardhat-ethers/src/internal/helpers.ts:46:42)", "    at Proxy.getSigners (/opt***s/smartcontract/node_modules/@nomicfoundation/hardhat-ethers/src/internal/index.ts:37:35) {", "  code: 'ERR_INVALID_URL',", "  input: '$(IWON-SEPOLIA-RPC-URL)'", "}"], "stdout": "[dotenv@17.2.3] injecting env (7) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }\nDownloading compiler 0.8.28\nCompiled 35 Solidity files successfully (evm target: paris).\n[dotenv@17.2.3] injecting env (0) from .env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops\n[dotenv@17.2.3] injecting env (7) from .env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops\nUpgrading proxy at ***", "stdout_lines": ["[dotenv@17.2.3] injecting env (7) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }", "Downloading compiler 0.8.28", "Compiled 35 Solidity files successfully (evm target: paris).", "[dotenv@17.2.3] injecting env (0) from .env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops", "[dotenv@17.2.3] injecting env (7) from .env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops", "Upgrading proxy at ***"]}
+2026-05-28T00:14:53.3294283Z 
+2026-05-28T00:14:53.3294714Z PLAY RECAP *********************************************************************
+2026-05-28T00:14:53.3295093Z smartcontract01            : ok=10   changed=5    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0   
+2026-05-28T00:14:53.3295249Z 
+2026-05-28T00:14:53.3803791Z 
+2026-05-28T00:14:53.3823196Z ##[error]Bash exited with code '2'.
+2026-05-28T00:14:53.3853739Z ##[section]Finishing: Run Ansible deploy playbook

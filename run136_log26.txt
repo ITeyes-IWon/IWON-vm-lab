@@ -1,0 +1,443 @@
+2026-05-28T00:04:41.8821541Z ##[section]Starting: Deploy target service
+2026-05-28T00:04:42.2126635Z ##[section]Starting: Initialize job
+2026-05-28T00:04:42.2129233Z Agent name: 'bastion01-ado'
+2026-05-28T00:04:42.2129700Z Agent machine name: 'bastion01'
+2026-05-28T00:04:42.2129930Z Current agent version: '4.252.0'
+2026-05-28T00:04:42.3160511Z Agent running as: 'iwon'
+2026-05-28T00:04:42.3203580Z Prepare build directory.
+2026-05-28T00:04:42.3699304Z Set build variables.
+2026-05-28T00:04:42.3719105Z Download all required tasks.
+2026-05-28T00:04:42.4004214Z ##[warning]Task 'Node.js tool installer' version 0 (NodeTool@0) is deprecated.
+2026-05-28T00:04:42.4012488Z ##[warning]This task is deprecated and will no longer receive updates. Please use UseNodeV1 as a replacement.
+2026-05-28T00:04:42.5072165Z Checking job knob settings.
+2026-05-28T00:04:42.5075136Z    Knob: DockerActionRetries = true Source: $(VSTSAGENT_DOCKER_ACTION_RETRIES) 
+2026-05-28T00:04:42.5076524Z    Knob: UseGitLongPaths = true Source: $(USE_GIT_LONG_PATHS) 
+2026-05-28T00:04:42.5078639Z    Knob: EnableIssueSourceValidation = true Source: $(ENABLE_ISSUE_SOURCE_VALIDATION) 
+2026-05-28T00:04:42.5079399Z    Knob: AgentEnablePipelineArtifactLargeChunkSize = true Source: $(AGENT_ENABLE_PIPELINEARTIFACT_LARGE_CHUNK_SIZE) 
+2026-05-28T00:04:42.5081610Z    Knob: ContinueAfterCancelProcessTreeKillAttempt = true Source: $(VSTSAGENT_CONTINUE_AFTER_CANCEL_PROCESSTREEKILL_ATTEMPT) 
+2026-05-28T00:04:42.5082308Z    Knob: ProcessHandlerSecureArguments = false Source: $(AZP_75787_ENABLE_NEW_LOGIC) 
+2026-05-28T00:04:42.5082781Z    Knob: ProcessHandlerSecureArguments = false Source: $(AZP_75787_ENABLE_NEW_LOGIC_LOG) 
+2026-05-28T00:04:42.5083243Z    Knob: ProcessHandlerTelemetry = true Source: $(AZP_75787_ENABLE_COLLECT) 
+2026-05-28T00:04:42.5083742Z    Knob: UseNewNodeHandlerTelemetry = True Source: $(DistributedTask.Agent.USENEWNODEHANDLERTELEMETRY) 
+2026-05-28T00:04:42.5084224Z    Knob: ProcessHandlerEnableNewLogic = true Source: $(AZP_75787_ENABLE_NEW_PH_LOGIC) 
+2026-05-28T00:04:42.5084941Z    Knob: EnableResourceMonitorDebugOutput = true Source: $(AZP_ENABLE_RESOURCE_MONITOR_DEBUG_OUTPUT) 
+2026-05-28T00:04:42.5085451Z    Knob: EnableResourceUtilizationWarnings = true Source: $(AZP_ENABLE_RESOURCE_UTILIZATION_WARNINGS) 
+2026-05-28T00:04:42.5086170Z    Knob: IgnoreVSTSTaskLib = true Source: $(AZP_AGENT_IGNORE_VSTSTASKLIB) 
+2026-05-28T00:04:42.5086611Z    Knob: FailJobWhenAgentDies = true Source: $(FAIL_JOB_WHEN_AGENT_DIES) 
+2026-05-28T00:04:42.5087189Z    Knob: CheckForTaskDeprecation = true Source: $(AZP_AGENT_CHECK_FOR_TASK_DEPRECATION) 
+2026-05-28T00:04:42.5087922Z    Knob: CheckIfTaskNodeRunnerIsDeprecated246 = True Source: $(DistributedTask.Agent.CheckIfTaskNodeRunnerIsDeprecated246) 
+2026-05-28T00:04:42.5088765Z    Knob: LogTaskNameInUserAgent = true Source: $(AZP_AGENT_LOG_TASKNAME_IN_USERAGENT) 
+2026-05-28T00:04:42.5089237Z    Knob: UseFetchFilterInCheckoutTask = true Source: $(AGENT_USE_FETCH_FILTER_IN_CHECKOUT_TASK) 
+2026-05-28T00:04:42.5089818Z    Knob: Rosetta2Warning = true Source: $(ROSETTA2_WARNING) 
+2026-05-28T00:04:42.5091205Z    Knob: UseSparseCheckoutInCheckoutTask = true Source: $(AGENT_USE_SPARSE_CHECKOUT_IN_CHECKOUT_TASK) 
+2026-05-28T00:04:42.5091463Z Finished checking job knob settings.
+2026-05-28T00:04:42.5471797Z Start tracking orphan processes.
+2026-05-28T00:04:42.5558937Z ##[section]Finishing: Initialize job
+2026-05-28T00:04:42.5608207Z ##[section]Async Command Start: DetectDockerContainer
+2026-05-28T00:04:42.5608841Z ##[section]Async Command End: DetectDockerContainer
+2026-05-28T00:04:42.5609724Z ##[section]Async Command Start: DetectDockerContainer
+2026-05-28T00:04:42.5610059Z ##[section]Async Command End: DetectDockerContainer
+2026-05-28T00:04:42.5721481Z ##[section]Starting: Download secrets: iwonsvckvkrc001
+2026-05-28T00:04:42.5801407Z ==============================================================================
+2026-05-28T00:04:42.5802271Z Task         : Azure Key Vault
+2026-05-28T00:04:42.5802537Z Description  : Download Azure Key Vault secrets
+2026-05-28T00:04:42.5802929Z Version      : 2.273.1
+2026-05-28T00:04:42.5803172Z Author       : Microsoft Corporation
+2026-05-28T00:04:42.5803404Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/deploy/azure-key-vault
+2026-05-28T00:04:42.5803579Z ==============================================================================
+2026-05-28T00:04:43.0518892Z ##[section]Finishing: Download secrets: iwonsvckvkrc001
+2026-05-28T00:04:43.0667571Z ##[section]Starting: Install SSH private key
+2026-05-28T00:04:43.0675283Z ==============================================================================
+2026-05-28T00:04:43.0675511Z Task         : Install SSH key
+2026-05-28T00:04:43.0675640Z Description  : Install an SSH key prior to a build or deployment
+2026-05-28T00:04:43.0675794Z Version      : 0.273.0
+2026-05-28T00:04:43.0675924Z Author       : Microsoft Corporation
+2026-05-28T00:04:43.0676045Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/install-ssh-key
+2026-05-28T00:04:43.0676211Z ==============================================================================
+2026-05-28T00:04:44.0093185Z [command]/usr/bin/ssh-agent
+2026-05-28T00:04:44.0150997Z SSH_AUTH_SOCK=/tmp/ssh-XXXXXXyzMEDF/agent.432591; export SSH_AUTH_SOCK;
+2026-05-28T00:04:44.0152649Z SSH_AGENT_PID=432592; export SSH_AGENT_PID;
+2026-05-28T00:04:44.0153991Z echo Agent pid 432592;
+2026-05-28T00:04:44.0324186Z [command]/usr/bin/ssh-add -L
+2026-05-28T00:04:44.0325125Z The agent has no identities.
+2026-05-28T00:04:44.0371249Z [command]/usr/bin/ssh-add /opt/ado-agent/_work/_temp/id_rsa
+2026-05-28T00:04:44.0421755Z Identity added: /opt/ado-agent/_work/_temp/id_rsa (EMAIL_ADDRESS)
+2026-05-28T00:04:44.0440432Z [command]/usr/bin/ssh-add
+2026-05-28T00:04:44.0568466Z ##[section]Finishing: Install SSH private key
+2026-05-28T00:04:44.0637585Z ##[section]Starting: Download secrets: iwonsvckvkrc001
+2026-05-28T00:04:44.0648126Z ==============================================================================
+2026-05-28T00:04:44.0648431Z Task         : Azure Key Vault
+2026-05-28T00:04:44.0648647Z Description  : Download Azure Key Vault secrets
+2026-05-28T00:04:44.0648888Z Version      : 2.273.1
+2026-05-28T00:04:44.0649082Z Author       : Microsoft Corporation
+2026-05-28T00:04:44.0649277Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/deploy/azure-key-vault
+2026-05-28T00:04:44.0649555Z ==============================================================================
+2026-05-28T00:04:44.6035789Z SubscriptionId: 51be5183-cf60-4f1f-8b9f-fb4b31daa579.
+2026-05-28T00:04:44.6036973Z Key vault name: iwonsvckvkrc001.
+2026-05-28T00:04:44.6045553Z Downloading secret value for: IWON-ADMIN-PRIVATE-KEY.
+2026-05-28T00:04:44.6050400Z Downloading secret value for: IWON-API-AUTH-ENABLED.
+2026-05-28T00:04:44.6053556Z Downloading secret value for: IWON-API-KEY-HEADER.
+2026-05-28T00:04:44.6055467Z Downloading secret value for: IWON-CHAIN-ID.
+2026-05-28T00:04:44.6057404Z Downloading secret value for: IWON-COMPANY-PRIVATE-KEY.
+2026-05-28T00:04:44.6059486Z Downloading secret value for: IWON-COMPANY-WALLET-USER-ID.
+2026-05-28T00:04:44.6064921Z Downloading secret value for: IWON-KAFKA-BOOTSTRAP-SERVERS.
+2026-05-28T00:04:44.6066832Z Downloading secret value for: IWON-P6SPY-LOG-LEVEL.
+2026-05-28T00:04:44.6068823Z Downloading secret value for: IWON-RPC-URL.
+2026-05-28T00:04:44.6070704Z Downloading secret value for: IWON-TOKEN-ADDRESS.
+2026-05-28T00:04:44.6072523Z Downloading secret value for: IWON-TOKEN-DECIMALS.
+2026-05-28T00:04:44.6074368Z Downloading secret value for: IWON-WALLET-AES-KEY-BASE64.
+2026-05-28T00:04:44.6076280Z Downloading secret value for: IWON-WALLET-API-BASE-URL.
+2026-05-28T00:04:44.6078349Z Downloading secret value for: iwon-web-tls-cert.
+2026-05-28T00:04:44.6088743Z Downloading secret value for: LOG-MAX-FILE-SIZE.
+2026-05-28T00:04:44.6090583Z Downloading secret value for: LOG-MAX-HISTORY.
+2026-05-28T00:04:44.6092439Z Downloading secret value for: LOG-TOTAL-SIZE-CAP.
+2026-05-28T00:04:44.6094294Z Downloading secret value for: LOGGING-FILE-NAME.
+2026-05-28T00:04:44.6096595Z Downloading secret value for: SERVER-SERVLET-CONTEXT-PATH.
+2026-05-28T00:04:44.6098639Z Downloading secret value for: SPRING-DATASOURCE-PASSWORD.
+2026-05-28T00:04:45.0629741Z Downloading secret value for: SPRING-DATASOURCE-URL.
+2026-05-28T00:04:45.0634539Z Downloading secret value for: SPRING-DATASOURCE-USERNAME.
+2026-05-28T00:04:45.0637158Z Downloading secret value for: SPRING-SESSION-TIMEOUT.
+2026-05-28T00:04:45.0640965Z Downloading secret value for: TOKEN-API-BASE-PATH.
+2026-05-28T00:04:45.1608590Z ##[section]Finishing: Download secrets: iwonsvckvkrc001
+2026-05-28T00:04:45.1728287Z ##[section]Starting: Checkout ITeyes-IWon/IWON-vm-lab@main to s
+2026-05-28T00:04:45.1741106Z ==============================================================================
+2026-05-28T00:04:45.1741463Z Task         : Get sources
+2026-05-28T00:04:45.1741675Z Description  : Get sources from a repository. Supports Git, TfsVC, and SVN repositories.
+2026-05-28T00:04:45.1741967Z Version      : 1.0.0
+2026-05-28T00:04:45.1742207Z Author       : Microsoft
+2026-05-28T00:04:45.1742859Z Help         : [More Information](https://go.microsoft.com/fwlink/?LinkId=798199)
+2026-05-28T00:04:45.1743143Z ==============================================================================
+2026-05-28T00:04:45.5501977Z Syncing repository: ITeyes-IWon/IWON-vm-lab (GitHub)
+2026-05-28T00:04:45.5530536Z ##[command]git version
+2026-05-28T00:04:45.5560977Z git version 2.34.1
+2026-05-28T00:04:45.5566998Z ##[command]git config --get remote.origin.url
+2026-05-28T00:04:45.5639397Z ##[command]git clean -ffdx
+2026-05-28T00:04:45.5698688Z ##[command]git reset --hard HEAD
+2026-05-28T00:04:45.5751091Z HEAD is now at 37ee274 fix: map smartcontract deployTarget to smartcontract01 ansible limit
+2026-05-28T00:04:45.5756566Z ##[command]git sparse-checkout disable
+2026-05-28T00:04:45.5803953Z ##[command]git config gc.auto 0
+2026-05-28T00:04:45.5851451Z ##[command]git config core.longpaths true
+2026-05-28T00:04:45.5962568Z ##[command]git config --get-all http.https://github.com/ITeyes-IWon/IWON-vm-lab.extraheader
+2026-05-28T00:04:45.6005043Z ##[command]git config --get-all http.extraheader
+2026-05-28T00:04:45.6043337Z ##[command]git config --get-regexp .*extraheader
+2026-05-28T00:04:45.6072814Z ##[command]git config --get-all http.proxy
+2026-05-28T00:04:45.6105587Z ##[command]git config http.version HTTP/1.1
+2026-05-28T00:04:45.6162765Z ##[command]git --config-env=http.extraheader=env_var_http.extraheader fetch --force --tags --prune --prune-tags --progress --no-recurse-submodules origin
+2026-05-28T00:04:46.1821832Z ##[command]git --config-env=http.extraheader=env_var_http.extraheader fetch --force --tags --prune --prune-tags --progress --no-recurse-submodules origin   +37ee27417f7bea8d59efbd6bbccd929d84ded9c9
+2026-05-28T00:04:46.5321314Z From https://github.com/ITeyes-IWon/IWON-vm-lab
+2026-05-28T00:04:46.5328210Z  * branch            37ee27417f7bea8d59efbd6bbccd929d84ded9c9 -> FETCH_HEAD
+2026-05-28T00:04:46.6547953Z ##[command]git checkout --progress --force 37ee27417f7bea8d59efbd6bbccd929d84ded9c9
+2026-05-28T00:04:46.6565417Z HEAD is now at 37ee274 fix: map smartcontract deployTarget to smartcontract01 ansible limit
+2026-05-28T00:04:46.6592046Z ##[section]Finishing: Checkout ITeyes-IWon/IWON-vm-lab@main to s
+2026-05-28T00:04:46.6689710Z ##[section]Starting: Check variable mappings (temporary, Deploy)
+2026-05-28T00:04:46.6704348Z ==============================================================================
+2026-05-28T00:04:46.6704672Z Task         : Bash
+2026-05-28T00:04:46.6704896Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:04:46.6705160Z Version      : 3.268.1
+2026-05-28T00:04:46.6705370Z Author       : Microsoft Corporation
+2026-05-28T00:04:46.6705611Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:04:46.6705891Z ==============================================================================
+2026-05-28T00:04:46.9094581Z Generating script.
+2026-05-28T00:04:46.9112021Z ========================== Starting Command Output ===========================
+2026-05-28T00:04:46.9124082Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/ab1c2c78-ad32-4ca6-80bb-1670d5aa3e4e.sh
+2026-05-28T00:04:46.9180914Z [Key mapping check - macro variables / Deploy stage]
+2026-05-28T00:04:46.9189185Z IWON-WALLET-AES-KEY-BASE64 is set: True
+2026-05-28T00:04:46.9191622Z IWON-API-KEY-HEADER is set: True
+2026-05-28T00:04:46.9192603Z IWON-CHAIN-ID is set: True
+2026-05-28T00:04:46.9193507Z IWON-RPC-URL is set: True
+2026-05-28T00:04:46.9194426Z IWON-TOKEN-ADDRESS is set: True
+2026-05-28T00:04:46.9195465Z IWON-TOKEN-DECIMALS is set: True
+2026-05-28T00:04:46.9196442Z IWON-ADMIN-PRIVATE-KEY is set: True
+2026-05-28T00:04:46.9197439Z IWON-COMPANY-PRIVATE-KEY is set: True
+2026-05-28T00:04:46.9198649Z SPRING-DATASOURCE-URL is set: True
+2026-05-28T00:04:46.9199668Z SPRING-DATASOURCE-USERNAME is set: True
+2026-05-28T00:04:46.9200640Z SPRING-DATASOURCE-PASSWORD is set: True
+2026-05-28T00:04:46.9201658Z IWON-WALLET-API-BASE-URL is set: True
+2026-05-28T00:04:46.9202709Z TOKEN-API-BASE-PATH is set: True
+2026-05-28T00:04:46.9203710Z IWON-KAFKA-BOOTSTRAP-SERVERS is set: True
+2026-05-28T00:04:46.9204730Z IWON-COMPANY-WALLET-USER-ID is set: True
+2026-05-28T00:04:46.9205735Z SERVER-SERVLET-CONTEXT-PATH is set: True
+2026-05-28T00:04:46.9206714Z APP-UPLOAD-DIR is set: False
+2026-05-28T00:04:46.9207821Z APP-CRYPTO-SECRET is set: False
+2026-05-28T00:04:46.9208914Z APP-HMAC-SECRET is set: False
+2026-05-28T00:04:46.9209900Z APP-SERVLET-CONTEXT-PATH is set: False
+2026-05-28T00:04:46.9210887Z WEB-SERVLET-CONTEXT-PATH is set: False
+2026-05-28T00:04:46.9211865Z SPRING-SESSION-TIMEOUT is set: True
+2026-05-28T00:04:46.9212889Z LOGGING-FILE-NAME is set: True
+2026-05-28T00:04:46.9213862Z LOG-MAX-FILE-SIZE is set: True
+2026-05-28T00:04:46.9214864Z LOG-TOTAL-SIZE-CAP is set: True
+2026-05-28T00:04:46.9215834Z LOG-MAX-HISTORY is set: True
+2026-05-28T00:04:46.9221317Z IWON-P6SPY-LOG-LEVEL is set: True
+2026-05-28T00:04:46.9222659Z IWON-API-AUTH-ENABLED is set: True
+2026-05-28T00:04:46.9223981Z IWON-OPERATOR-ADDRESS is set: False
+2026-05-28T00:04:46.9225228Z IWON-ADMIN-ADDRESS is set: False
+2026-05-28T00:04:46.9226465Z IWON-SEPOLIA-RPC-URL is set: False
+2026-05-28T00:04:46.9227640Z ADO_AGENT_PAT is set: True
+2026-05-28T00:04:46.9229021Z TFSTATE_RG is set: False
+2026-05-28T00:04:46.9230285Z TFSTATE_STORAGE is set: False
+2026-05-28T00:04:46.9231484Z ANSIBLE_SSH_PRIVATE_KEY_SECURE_FILE is set: True
+2026-05-28T00:04:46.9233635Z AZURE_SERVICE_CONNECTION is set: True
+2026-05-28T00:04:46.9234026Z 
+2026-05-28T00:04:46.9235087Z [Key mapping check - environment variables by prefix / Deploy stage]
+2026-05-28T00:04:46.9261886Z ADO_AGENT_BOOTSTRAP_PLAYBOOK_PATH is set: true
+2026-05-28T00:04:46.9263347Z ADO_AGENT_POOL is set: true
+2026-05-28T00:04:46.9267148Z ADO_AGENT_URL is set: true
+2026-05-28T00:04:46.9290465Z ANSIBLE_CONFIG_PATH is set: true
+2026-05-28T00:04:46.9291531Z ANSIBLE_INVENTORY_OUT is set: true
+2026-05-28T00:04:46.9292625Z ANSIBLE_PLAYBOOK_PATH is set: true
+2026-05-28T00:04:46.9293745Z ANSIBLE_SSH_KEY_PATH is set: true
+2026-05-28T00:04:46.9294849Z ANSIBLE_SSH_PRIVATE_KEY_SECURE_FILE is set: true
+2026-05-28T00:04:46.9296007Z ANSIBLE_SSH_USER is set: true
+2026-05-28T00:04:46.9297404Z AZURE_HTTP_USER_AGENT is set: true
+2026-05-28T00:04:46.9303813Z AZURE_SERVICE_CONNECTION is set: true
+2026-05-28T00:04:46.9304808Z TFSTATE_CONTAINER is set: true
+2026-05-28T00:04:46.9305764Z TFSTATE_KEY is set: true
+2026-05-28T00:04:46.9306673Z TFSTATE_RG is set: false
+2026-05-28T00:04:46.9307632Z TFSTATE_STORAGE is set: false
+2026-05-28T00:04:46.9308430Z 
+2026-05-28T00:04:46.9340174Z ##[section]Finishing: Check variable mappings (temporary, Deploy)
+2026-05-28T00:04:46.9412356Z ##[section]Starting: Install Terraform
+2026-05-28T00:04:46.9421414Z ==============================================================================
+2026-05-28T00:04:46.9421722Z Task         : Terraform tool installer
+2026-05-28T00:04:46.9421954Z Description  : Find in cache or download a specific version of Terraform and prepend it to the PATH
+2026-05-28T00:04:46.9422366Z Version      : 1.216.36
+2026-05-28T00:04:46.9422584Z Author       : Microsoft Corporation
+2026-05-28T00:04:46.9422809Z Help         : [Learn more about this task](https://aka.ms/AAf1a0p)
+2026-05-28T00:04:46.9423064Z ==============================================================================
+2026-05-28T00:04:47.1499913Z Getting latest Terraform version.
+2026-05-28T00:04:47.5595127Z Found tool in cache: terraform 1.15.5 x64
+2026-05-28T00:04:47.5610878Z Prepending PATH environment variable with directory: /opt/ado-agent/_work/_tool/terraform/1.15.5/x64
+2026-05-28T00:04:47.5617471Z Verifying Terraform installation...
+2026-05-28T00:04:47.5629247Z [command]/opt/ado-agent/_work/_tool/terraform/1.15.5/x64/terraform version
+2026-05-28T00:04:47.5925766Z Terraform v1.15.5
+2026-05-28T00:04:47.5926152Z on linux_amd64
+2026-05-28T00:04:47.5933525Z 
+2026-05-28T00:04:47.5982227Z ##[section]Finishing: Install Terraform
+2026-05-28T00:04:47.6020251Z Skipping step due to condition evaluation.
+Evaluating: eq('False', True)
+Expanded: eq('False', True)
+Result: False
+
+2026-05-28T00:04:47.6044974Z ##[section]Starting: Export Terraform outputs when Terraform stage is skipped
+2026-05-28T00:04:47.6050131Z ==============================================================================
+2026-05-28T00:04:47.6050257Z Task         : Bash
+2026-05-28T00:04:47.6050331Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:04:47.6050431Z Version      : 3.268.1
+2026-05-28T00:04:47.6050982Z Author       : Microsoft Corporation
+2026-05-28T00:04:47.6051098Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:04:47.6051255Z ==============================================================================
+2026-05-28T00:04:47.7769728Z Generating script.
+2026-05-28T00:04:47.7814578Z ========================== Starting Command Output ===========================
+2026-05-28T00:04:47.7817608Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/6000c0f5-5846-4a4c-89fa-4fcc54841198.sh
+2026-05-28T00:04:47.7934335Z ##[warning]TFSTATE_RG/TFSTATE_STORAGE is not configured. Falling back to static inventory for PoC run.
+2026-05-28T00:04:47.7941795Z 
+2026-05-28T00:04:47.7989292Z ##[section]Finishing: Export Terraform outputs when Terraform stage is skipped
+2026-05-28T00:04:47.8099246Z ##[section]Starting: Generate inventory from Terraform outputs
+2026-05-28T00:04:47.8104290Z ==============================================================================
+2026-05-28T00:04:47.8104410Z Task         : Bash
+2026-05-28T00:04:47.8104485Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:04:47.8104575Z Version      : 3.268.1
+2026-05-28T00:04:47.8104645Z Author       : Microsoft Corporation
+2026-05-28T00:04:47.8104726Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:04:47.8104826Z ==============================================================================
+2026-05-28T00:04:47.9781028Z Generating script.
+2026-05-28T00:04:47.9792802Z ========================== Starting Command Output ===========================
+2026-05-28T00:04:47.9804434Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/ed8e962e-1efa-4015-9924-11a8d13f6545.sh
+2026-05-28T00:04:47.9904885Z ##[warning]Using static inventory fallback: vm-ansible/inventory.ini
+2026-05-28T00:04:47.9923908Z Removed ProxyJump from generated inventory for self-hosted agent execution.
+2026-05-28T00:04:47.9932917Z 
+2026-05-28T00:04:47.9997062Z ##[section]Finishing: Generate inventory from Terraform outputs
+2026-05-28T00:04:48.0040776Z ##[section]Starting: Install Ansible
+2026-05-28T00:04:48.0048226Z ==============================================================================
+2026-05-28T00:04:48.0048443Z Task         : Bash
+2026-05-28T00:04:48.0048572Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:04:48.0048737Z Version      : 3.268.1
+2026-05-28T00:04:48.0048860Z Author       : Microsoft Corporation
+2026-05-28T00:04:48.0049000Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:04:48.0049419Z ==============================================================================
+2026-05-28T00:04:48.1844222Z Generating script.
+2026-05-28T00:04:48.1856920Z ========================== Starting Command Output ===========================
+2026-05-28T00:04:48.1869187Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/912585ac-8572-46b5-85ee-ba673b0c6e32.sh
+2026-05-28T00:04:48.6025830Z Hit:1 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+2026-05-28T00:04:48.6033352Z Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
+2026-05-28T00:04:48.6033883Z Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
+2026-05-28T00:04:48.6034367Z Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
+2026-05-28T00:04:50.6206939Z Reading package lists...
+2026-05-28T00:04:50.6846294Z Reading package lists...
+2026-05-28T00:04:50.9594372Z Building dependency tree...
+2026-05-28T00:04:50.9601167Z Reading state information...
+2026-05-28T00:04:51.1938899Z ansible is already the newest version (2.10.7+merged+base+2.10.8+dfsg-1).
+2026-05-28T00:04:51.1939921Z python3-pip is already the newest version (22.0.2+dfsg-1ubuntu0.7).
+2026-05-28T00:04:51.1940435Z 0 upgraded, 0 newly installed, 0 to remove and 22 not upgraded.
+2026-05-28T00:04:51.1978218Z 
+2026-05-28T00:04:51.2054109Z ##[section]Finishing: Install Ansible
+2026-05-28T00:04:51.2081097Z ##[section]Starting: Resolve package definition and artifact pattern
+2026-05-28T00:04:51.2085192Z ==============================================================================
+2026-05-28T00:04:51.2085309Z Task         : Bash
+2026-05-28T00:04:51.2085382Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:04:51.2085474Z Version      : 3.268.1
+2026-05-28T00:04:51.2085538Z Author       : Microsoft Corporation
+2026-05-28T00:04:51.2085618Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:04:51.2085737Z ==============================================================================
+2026-05-28T00:04:51.3253067Z Generating script.
+2026-05-28T00:04:51.3266614Z ========================== Starting Command Output ===========================
+2026-05-28T00:04:51.3277421Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/5322038f-43ac-4502-87fe-b1900738efd5.sh
+2026-05-28T00:04:51.3331745Z 
+2026-05-28T00:04:51.3380291Z ##[section]Finishing: Resolve package definition and artifact pattern
+2026-05-28T00:04:51.3405506Z ##[section]Starting: Precheck Maven package availability
+2026-05-28T00:04:51.3410433Z ==============================================================================
+2026-05-28T00:04:51.3410564Z Task         : Bash
+2026-05-28T00:04:51.3410635Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:04:51.3410733Z Version      : 3.268.1
+2026-05-28T00:04:51.3410799Z Author       : Microsoft Corporation
+2026-05-28T00:04:51.3410881Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:04:51.3411001Z ==============================================================================
+2026-05-28T00:04:51.4827443Z Generating script.
+2026-05-28T00:04:51.4843844Z ========================== Starting Command Output ===========================
+2026-05-28T00:04:51.4865500Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/e23b79e2-4045-46a8-9390-baf28609df70.sh
+2026-05-28T00:04:51.7976694Z Precheck passed: com.iteyes.smart:smart-smartcontract==1.0.0-sc.20260528090008
+2026-05-28T00:04:51.7978327Z 
+2026-05-28T00:04:51.8040928Z ##[section]Finishing: Precheck Maven package availability
+2026-05-28T00:04:51.8083355Z ##[section]Starting: Download artifact from Maven feed
+2026-05-28T00:04:51.8088564Z ==============================================================================
+2026-05-28T00:04:51.8088757Z Task         : Bash
+2026-05-28T00:04:51.8088874Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:04:51.8089015Z Version      : 3.268.1
+2026-05-28T00:04:51.8089312Z Author       : Microsoft Corporation
+2026-05-28T00:04:51.8089449Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:04:51.8089612Z ==============================================================================
+2026-05-28T00:04:51.9417545Z Generating script.
+2026-05-28T00:04:51.9429615Z ========================== Starting Command Output ===========================
+2026-05-28T00:04:51.9440783Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/f6e1e2f3-cc82-47e2-a580-9a00b3998ff7.sh
+2026-05-28T00:04:52.1508941Z Downloaded artifact: /opt/ado-agent/_work/2/a/smart-smartcontract-1.0.0-sc.20260528090008.zip
+2026-05-28T00:04:52.1518319Z 
+2026-05-28T00:04:52.1583371Z ##[section]Finishing: Download artifact from Maven feed
+2026-05-28T00:04:52.1627531Z ##[section]Starting: Validate downloaded artifact
+2026-05-28T00:04:52.1633762Z ==============================================================================
+2026-05-28T00:04:52.1633957Z Task         : Bash
+2026-05-28T00:04:52.1634090Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:04:52.1634248Z Version      : 3.268.1
+2026-05-28T00:04:52.1634373Z Author       : Microsoft Corporation
+2026-05-28T00:04:52.1634512Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:04:52.1634674Z ==============================================================================
+2026-05-28T00:04:52.3235562Z Generating script.
+2026-05-28T00:04:52.3249415Z ========================== Starting Command Output ===========================
+2026-05-28T00:04:52.3260920Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/52e6c7ff-bf7a-4fc6-afa9-7b931083ca53.sh
+2026-05-28T00:04:52.3402888Z Target artifact: /opt/ado-agent/_work/2/a/smart-smartcontract-1.0.0-sc.20260528090008.zip
+2026-05-28T00:04:52.3415638Z 
+2026-05-28T00:04:52.3483350Z ##[section]Finishing: Validate downloaded artifact
+2026-05-28T00:04:52.3528038Z ##[section]Starting: Generate initial .env for SmartContract
+2026-05-28T00:04:52.3534116Z ==============================================================================
+2026-05-28T00:04:52.3534301Z Task         : Bash
+2026-05-28T00:04:52.3534417Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:04:52.3534564Z Version      : 3.268.1
+2026-05-28T00:04:52.3534677Z Author       : Microsoft Corporation
+2026-05-28T00:04:52.3534803Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:04:52.3534968Z ==============================================================================
+2026-05-28T00:04:52.4971413Z Generating script.
+2026-05-28T00:04:52.4983658Z ========================== Starting Command Output ===========================
+2026-05-28T00:04:52.4995274Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/553a07f1-b896-4ba9-824b-509ba4412a5c.sh
+2026-05-28T00:04:52.5060803Z Generated .env for SmartContract execution on VM
+2026-05-28T00:04:52.5069439Z 
+2026-05-28T00:04:52.5114496Z ##[section]Finishing: Generate initial .env for SmartContract
+2026-05-28T00:04:52.5138503Z ##[section]Starting: Run Ansible deploy playbook
+2026-05-28T00:04:52.5142209Z ==============================================================================
+2026-05-28T00:04:52.5142325Z Task         : Bash
+2026-05-28T00:04:52.5142399Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:04:52.5142489Z Version      : 3.268.1
+2026-05-28T00:04:52.5142554Z Author       : Microsoft Corporation
+2026-05-28T00:04:52.5142634Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:04:52.5142733Z ==============================================================================
+2026-05-28T00:04:52.6569495Z Generating script.
+2026-05-28T00:04:52.6597547Z ========================== Starting Command Output ===========================
+2026-05-28T00:04:52.6628791Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/c57729***-394d-4ea4-9***0-17243dc63aa1.sh
+2026-05-28T00:04:53.1435766Z [WARNING]: Could not match supplied host pattern, ignoring: smartcontract
+2026-05-28T00:04:53.1438786Z 
+2026-05-28T00:04:53.1441490Z PLAY [GitOps wrapper deploy playbook] ******************************************
+2026-05-28T00:04:53.1444290Z skipping: no hosts matched
+2026-05-28T00:04:53.1444712Z 
+2026-05-28T00:04:53.1446140Z PLAY RECAP *********************************************************************
+2026-05-28T00:04:53.1446816Z 
+2026-05-28T00:04:53.2002546Z 
+2026-05-28T00:04:53.2049311Z ##[section]Finishing: Run Ansible deploy playbook
+2026-05-28T00:04:53.2089350Z ##[section]Starting: Install Node.js 22.x for KV Sync
+2026-05-28T00:04:53.2093454Z ==============================================================================
+2026-05-28T00:04:53.2093561Z Task         : Node.js tool installer
+2026-05-28T00:04:53.2093640Z Description  : Finds or downloads and caches the specified version spec of Node.js and adds it to the PATH
+2026-05-28T00:04:53.2093754Z Version      : 0.272.1
+2026-05-28T00:04:53.2093831Z Author       : Microsoft Corporation
+2026-05-28T00:04:53.2093910Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/tool/node-js
+2026-05-28T00:04:53.2094010Z ==============================================================================
+2026-05-28T00:04:53.5198166Z Aquiring Node called
+2026-05-28T00:04:53.5198554Z Retry count on download fails: 5 Retry delay: 1000ms
+2026-05-28T00:04:53.5200978Z Downloading: https://nodejs.org/dist/v22.22.3/node-v22.22.3-linux-x64.tar.gz
+2026-05-28T00:04:53.8435528Z Extracting archive
+2026-05-28T00:04:53.8452324Z [command]/usr/bin/tar xC /opt/ado-agent/_work/_temp/b87f9a1e-2841-4090-8c26-***73e1122c8d -f /opt/ado-agent/_work/_temp/86fcb016-c393-4b0a-bc97-56a8ef46428e
+2026-05-28T00:04:55.0589215Z 
+2026-05-28T00:04:55.0603921Z Caching tool: node 22.22.3 x64
+2026-05-28T00:04:55.4703864Z Prepending PATH environment variable with directory: /opt/ado-agent/_work/_tool/node/22.22.3/x64/bin
+2026-05-28T00:04:55.4914663Z ##[section]Finishing: Install Node.js 22.x for KV Sync
+2026-05-28T00:04:55.5047893Z ##[section]Starting: Sync Key Vault (sync_keyvault.js) via ADO Service Connection
+2026-05-28T00:04:55.5053524Z ==============================================================================
+2026-05-28T00:04:55.5053642Z Task         : Azure CLI
+2026-05-28T00:04:55.5053721Z Description  : Run Azure CLI commands against an Azure subscription in a PowerShell Core/Shell script when running on Linux agent or PowerShell/PowerShell Core/Batch script when running on Windows agent.
+2026-05-28T00:04:55.5053876Z Version      : 2.274.1
+2026-05-28T00:04:55.5053950Z Author       : Microsoft Corporation
+2026-05-28T00:04:55.5054021Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/deploy/azure-cli
+2026-05-28T00:04:55.5054121Z ==============================================================================
+2026-05-28T00:04:55.7358635Z ##[error]Azure CLI 2.x is not installed on this machine.
+2026-05-28T00:04:55.7481672Z ##[error]Script failed with error: Error: Unable to locate executable file: 'az'. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also check the file mode to verify the file is executable.
+    at Object._which (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/internal.js:368:23)
+    at new ToolRunner (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/toolrunner.js:33:29)
+    at Object.tool (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/task.js:1688:***)
+    at Object.execSync (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/task.js:1669:19)
+    at azureclitask.<anonymous> (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/azureclitask.js:64:42)
+    at Generator.next (<anonymous>)
+    at fulfilled (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/azureclitask.js:5:58)
+2026-05-28T00:04:55.7489108Z ##[error]Script failed with error: Error: Unable to locate executable file: 'az'. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also check the file mode to verify the file is executable.
+    at Object._which (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/internal.js:368:23)
+    at new ToolRunner (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/toolrunner.js:33:29)
+    at Object.tool (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/task.js:1688:***)
+    at Object.execSync (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/node_modules/azure-pipelines-task-lib/task.js:1669:19)
+    at azureclitask.<anonymous> (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/azureclitask.js:64:42)
+    at Generator.next (<anonymous>)
+    at fulfilled (/opt/ado-agent/_work/_tasks/AzureCLI_46e4be58-730b-4389-8a2f-ea10b3e5e815/2.274.1/azureclitask.js:5:58)
+2026-05-28T00:04:55.7530250Z ##[section]Finishing: Sync Key Vault (sync_keyvault.js) via ADO Service Connection
+2026-05-28T00:04:55.7573085Z ##[section]Starting: Clean up sensitive files
+2026-05-28T00:04:55.7576806Z ==============================================================================
+2026-05-28T00:04:55.7576923Z Task         : Bash
+2026-05-28T00:04:55.7576994Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:04:55.7577089Z Version      : 3.268.1
+2026-05-28T00:04:55.7577154Z Author       : Microsoft Corporation
+2026-05-28T00:04:55.7577235Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:04:55.7577343Z ==============================================================================
+2026-05-28T00:04:55.8771325Z Generating script.
+2026-05-28T00:04:55.8785087Z ========================== Starting Command Output ===========================
+2026-05-28T00:04:55.8794302Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/717675b4-7a62-4b3b-b8d2-27bdd10f5277.sh
+2026-05-28T00:04:55.8860043Z Cleaned up .env and temporary files.
+2026-05-28T00:04:55.8868850Z 
+2026-05-28T00:04:55.8912702Z ##[section]Finishing: Clean up sensitive files
+2026-05-28T00:04:55.8940987Z ##[section]Starting: Install SSH private key
+2026-05-28T00:04:55.8944530Z ==============================================================================
+2026-05-28T00:04:55.8944646Z Task         : Install SSH key
+2026-05-28T00:04:55.8944725Z Description  : Install an SSH key prior to a build or deployment
+2026-05-28T00:04:55.8944818Z Version      : 0.273.0
+2026-05-28T00:04:55.8944896Z Author       : Microsoft Corporation
+2026-05-28T00:04:55.8944981Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/install-ssh-key
+2026-05-28T00:04:55.8945088Z ==============================================================================
+2026-05-28T00:04:56.0999440Z ##[section]Finishing: Install SSH private key
+2026-05-28T00:04:56.1024930Z ##[section]Starting: Checkout ITeyes-IWon/IWON-vm-lab@main to s
+2026-05-28T00:04:56.1027511Z ==============================================================================
+2026-05-28T00:04:56.1027630Z Task         : Get sources
+2026-05-28T00:04:56.1030413Z Description  : Get sources from a repository. Supports Git, TfsVC, and SVN repositories.
+2026-05-28T00:04:56.1030592Z Version      : 1.0.0
+2026-05-28T00:04:56.1030710Z Author       : Microsoft
+2026-05-28T00:04:56.1030830Z Help         : [More Information](https://go.microsoft.com/fwlink/?LinkId=798199)
+2026-05-28T00:04:56.1030937Z ==============================================================================
+2026-05-28T00:04:56.3510495Z Cleaning any cached credential from repository: ITeyes-IWon/IWON-vm-lab (GitHub)
+2026-05-28T00:04:56.3596917Z ##[section]Finishing: Checkout ITeyes-IWon/IWON-vm-lab@main to s
+2026-05-28T00:04:56.3618254Z ##[section]Starting: Finalize Job
+2026-05-28T00:04:56.3625424Z Cleaning up task key
+2026-05-28T00:04:56.3626107Z Start cleaning up orphan processes.
+2026-05-28T00:04:56.3799242Z ##[section]Finishing: Finalize Job
+2026-05-28T00:04:56.3819224Z ##[section]Finishing: Deploy target service

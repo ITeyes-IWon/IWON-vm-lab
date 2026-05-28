@@ -1,0 +1,20 @@
+2026-05-28T00:04:52.5138494Z ##[section]Starting: Run Ansible deploy playbook
+2026-05-28T00:04:52.5142203Z ==============================================================================
+2026-05-28T00:04:52.5142323Z Task         : Bash
+2026-05-28T00:04:52.5142396Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-05-28T00:04:52.5142487Z Version      : 3.268.1
+2026-05-28T00:04:52.5142552Z Author       : Microsoft Corporation
+2026-05-28T00:04:52.5142632Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-05-28T00:04:52.5142731Z ==============================================================================
+2026-05-28T00:04:52.6569451Z Generating script.
+2026-05-28T00:04:52.6597515Z ========================== Starting Command Output ===========================
+2026-05-28T00:04:52.6628759Z [command]/usr/bin/bash /opt/ado-agent/_work/_temp/c57729***-394d-4ea4-9***0-17243dc63aa1.sh
+2026-05-28T00:04:53.1435657Z [WARNING]: Could not match supplied host pattern, ignoring: smartcontract
+2026-05-28T00:04:53.1438765Z 
+2026-05-28T00:04:53.1441482Z PLAY [GitOps wrapper deploy playbook] ******************************************
+2026-05-28T00:04:53.1444284Z skipping: no hosts matched
+2026-05-28T00:04:53.1444709Z 
+2026-05-28T00:04:53.1446137Z PLAY RECAP *********************************************************************
+2026-05-28T00:04:53.1446811Z 
+2026-05-28T00:04:53.2002495Z 
+2026-05-28T00:04:53.2049293Z ##[section]Finishing: Run Ansible deploy playbook
