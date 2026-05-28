@@ -737,6 +737,11 @@ stages:
                     set -euo pipefail
                     export ANSIBLE_HOST_KEY_CHECKING=False
 
+                    ANSIBLE_LIMIT_TARGET='${{ parameters.deployTarget }}'
+                    if [ "${ANSIBLE_LIMIT_TARGET}" = "smartcontract" ]; then
+                      ANSIBLE_LIMIT_TARGET='smartcontract01'
+                    fi
+
                     if command -v wsl.exe >/dev/null 2>&1; then
                       to_wsl_path() {
                         local input="$1"
@@ -771,7 +776,7 @@ stages:
                         ansible-playbook \
                           -i '${INV_WSL}' \
                           '${SRC_WSL}/$(ANSIBLE_PLAYBOOK_PATH)' \
-                          --limit '${{ parameters.deployTarget }}' \
+                          --limit '${ANSIBLE_LIMIT_TARGET}' \
                           --extra-vars 'deployTarget=${{ parameters.deployTarget }} target_artifact=${ART_WSL} ansible_ssh_private_key_file=~/.ssh/ado_id_rsa sc_operation=${{ parameters.operation }} spring_datasource_url=${SPRING_DATASOURCE_URL} spring_datasource_username=${SPRING_DATASOURCE_USERNAME} spring_datasource_password=${SPRING_DATASOURCE_PASSWORD} iwon_api_key_header=${IWON_API_KEY_HEADER} iwon_wallet_api_base_url=${IWON_WALLET_API_BASE_URL} iwon_company_wallet_user_id=${IWON_COMPANY_WALLET_USER_ID} token_api_base_path=${TOKEN_API_BASE_PATH} iwon_api_auth_enabled=${IWON_API_AUTH_ENABLED} iwon_wallet_aes_key_base64=${IWON_WALLET_AES_KEY_BASE64} iwon_rpc_url=${IWON_RPC_URL} iwon_token_address=${IWON_TOKEN_ADDRESS} iwon_chain_id=${IWON_CHAIN_ID} iwon_token_decimals=${IWON_TOKEN_DECIMALS} iwon_company_private_key=${IWON_COMPANY_PRIVATE_KEY} iwon_admin_private_key=${IWON_ADMIN_PRIVATE_KEY}'
                       "
                     else
@@ -781,7 +786,7 @@ stages:
                       ansible-playbook \
                         -i "$(ANSIBLE_INVENTORY_OUT)" \
                         "$(Build.SourcesDirectory)/$(ANSIBLE_PLAYBOOK_PATH)" \
-                        --limit "${{ parameters.deployTarget }}" \
+                        --limit "${ANSIBLE_LIMIT_TARGET}" \
                         --extra-vars "deployTarget=${{ parameters.deployTarget }} target_artifact=$(TARGET_ARTIFACT) sc_operation=${{ parameters.operation }} spring_datasource_url=$(SPRING-DATASOURCE-URL) spring_datasource_username=$(SPRING-DATASOURCE-USERNAME) spring_datasource_password=$(SPRING-DATASOURCE-PASSWORD) iwon_api_key_header=$(IWON-API-KEY-HEADER) iwon_wallet_api_base_url=$(IWON-WALLET-API-BASE-URL) iwon_company_wallet_user_id=$(IWON-COMPANY-WALLET-USER-ID) token_api_base_path=$(TOKEN-API-BASE-PATH) iwon_api_auth_enabled=$(IWON-API-AUTH-ENABLED) iwon_wallet_aes_key_base64=$(IWON-WALLET-AES-KEY-BASE64) iwon_rpc_url=$(IWON-RPC-URL) iwon_token_address=$(IWON-TOKEN-ADDRESS) iwon_chain_id=$(IWON-CHAIN-ID) iwon_token_decimals=$(IWON-TOKEN-DECIMALS) iwon_company_private_key=$(IWON-COMPANY-PRIVATE-KEY) iwon_admin_private_key=$(IWON-ADMIN-PRIVATE-KEY)"
                     fi
                   displayName: Run Ansible deploy playbook
