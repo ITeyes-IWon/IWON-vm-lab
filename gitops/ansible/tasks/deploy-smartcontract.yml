@@ -16,6 +16,15 @@
     group: "{{ service_user | default('iwon') }}"
   become: true
 
+- name: Ensure smartcontract directory ownership after unzip
+  ansible.builtin.file:
+    path: /opt/apps/smartcontract
+    state: directory
+    owner: "{{ service_user | default('iwon') }}"
+    group: "{{ service_user | default('iwon') }}"
+    recurse: true
+  become: true
+
 - name: Copy initial .env to VM
   ansible.builtin.copy:
     src: "{{ playbook_dir }}/smartcontract_env/.env"
