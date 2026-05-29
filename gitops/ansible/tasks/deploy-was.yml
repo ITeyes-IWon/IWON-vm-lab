@@ -22,3 +22,6 @@
       IWON_API_KEY_HEADER: "{{ iwon_api_key_header }}"
       IWON_WALLET_API_BASE_URL: "{{ iwon_wallet_api_base_url }}"
       IWON_COMPANY_WALLET_USER_ID: "{{ iwon_company_wallet_user_id }}"
+      WEB_SERVLET_CONTEXT_PATH: "{{ lookup('ansible.builtin.env', 'KV_WEB_SERVLET_CONTEXT_PATH') }}"
+      APP_CRYPTO_SECRET: "{{ lookup('ansible.builtin.env', 'KV_APP_CRYPTO_SECRET') }}"
+      APP_UPLOAD_DIR: "{{ lookup('ansible.builtin.env', 'KV_APP_UPLOAD_DIR') }}"
